@@ -36,6 +36,8 @@
 		9C4B0DC42179E55000A93DEE /* AirBankTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirBankTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4B0DC82179E55000A93DEE /* AirBankTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirBankTests.swift; sourceTree = "<group>"; };
 		9C4B0DCA2179E55000A93DEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C4B0DD32179E62500A93DEE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9C4B0DD42179E62500A93DEE /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,8 @@
 		9C4B0DA72179E54E00A93DEE = {
 			isa = PBXGroup;
 			children = (
+				9C4B0DD32179E62500A93DEE /* README.md */,
+				9C4B0DD42179E62500A93DEE /* LICENSE */,
 				9C4B0DB22179E54F00A93DEE /* AirBank */,
 				9C4B0DC72179E55000A93DEE /* AirBankTests */,
 				9C4B0DB12179E54F00A93DEE /* Products */,
@@ -360,7 +364,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AirBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -368,6 +373,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomkraina.AirBank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -377,7 +383,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AirBank/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -385,6 +392,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomkraina.AirBank;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
