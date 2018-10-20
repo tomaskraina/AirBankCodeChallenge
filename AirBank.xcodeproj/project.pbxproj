@@ -18,12 +18,12 @@
 		9C4B0DE2217B802200A93DEE /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DE1217B802200A93DEE /* Networking.swift */; };
 		9C4B0DE8217B8F9300A93DEE /* CodableAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4B0DE7217B8F9300A93DEE /* CodableAlamofire.framework */; };
 		9C4B0DEA217BA8BF00A93DEE /* TransactionListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DE9217BA8BF00A93DEE /* TransactionListResponse.swift */; };
-		9C4B0DED217BA8F300A93DEE /* TransactionDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DEC217BA8F300A93DEE /* TransactionDetail.swift */; };
+		9C4B0DED217BA8F300A93DEE /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DEC217BA8F300A93DEE /* Transaction.swift */; };
 		9C4B0DF0217BA92A00A93DEE /* TransactionDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DEF217BA92A00A93DEE /* TransactionDirection.swift */; };
 		9C4B0DF2217BA94300A93DEE /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DF1217BA94300A93DEE /* Identifier.swift */; };
 		9C4B0DF4217BAAB500A93DEE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DF3217BAAB500A93DEE /* Result.swift */; };
 		9C4B0DF6217BAB1900A93DEE /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DF5217BAB1900A93DEE /* helpers.swift */; };
-		9C4B0DF8217BAC1700A93DEE /* TransactionDetailDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DF7217BAC1700A93DEE /* TransactionDetailDecodableTests.swift */; };
+		9C4B0DF8217BAC1700A93DEE /* TransactionDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DF7217BAC1700A93DEE /* TransactionDecodableTests.swift */; };
 		9C4B0DFA217BAD5700A93DEE /* TransactionListResponseDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DF9217BAD5700A93DEE /* TransactionListResponseDecodableTests.swift */; };
 		9C4B0DFC217BADC400A93DEE /* transactionList-success.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0DFB217BADC400A93DEE /* transactionList-success.json */; };
 /* End PBXBuildFile section */
@@ -56,12 +56,12 @@
 		9C4B0DE1217B802200A93DEE /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		9C4B0DE7217B8F9300A93DEE /* CodableAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CodableAlamofire.framework; path = Carthage/Build/iOS/CodableAlamofire.framework; sourceTree = "<group>"; };
 		9C4B0DE9217BA8BF00A93DEE /* TransactionListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListResponse.swift; sourceTree = "<group>"; };
-		9C4B0DEC217BA8F300A93DEE /* TransactionDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetail.swift; sourceTree = "<group>"; };
+		9C4B0DEC217BA8F300A93DEE /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		9C4B0DEF217BA92A00A93DEE /* TransactionDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDirection.swift; sourceTree = "<group>"; };
 		9C4B0DF1217BA94300A93DEE /* Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifier.swift; sourceTree = "<group>"; };
 		9C4B0DF3217BAAB500A93DEE /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		9C4B0DF5217BAB1900A93DEE /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
-		9C4B0DF7217BAC1700A93DEE /* TransactionDetailDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailDecodableTests.swift; sourceTree = "<group>"; };
+		9C4B0DF7217BAC1700A93DEE /* TransactionDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDecodableTests.swift; sourceTree = "<group>"; };
 		9C4B0DF9217BAD5700A93DEE /* TransactionListResponseDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListResponseDecodableTests.swift; sourceTree = "<group>"; };
 		9C4B0DFB217BADC400A93DEE /* transactionList-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "transactionList-success.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,7 +127,7 @@
 			children = (
 				9C4B0DC82179E55000A93DEE /* AirBankIntegrationTests.swift */,
 				9C4B0DF9217BAD5700A93DEE /* TransactionListResponseDecodableTests.swift */,
-				9C4B0DF7217BAC1700A93DEE /* TransactionDetailDecodableTests.swift */,
+				9C4B0DF7217BAC1700A93DEE /* TransactionDecodableTests.swift */,
 				9C4B0DF5217BAB1900A93DEE /* helpers.swift */,
 				9C4B0DCA2179E55000A93DEE /* Info.plist */,
 				9C4B0DFD217BADC900A93DEE /* Sample Responses */,
@@ -166,7 +166,7 @@
 		9C4B0DEE217BA8F900A93DEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9C4B0DEC217BA8F300A93DEE /* TransactionDetail.swift */,
+				9C4B0DEC217BA8F300A93DEE /* Transaction.swift */,
 				9C4B0DEF217BA92A00A93DEE /* TransactionDirection.swift */,
 				9C4B0DF1217BA94300A93DEE /* Identifier.swift */,
 			);
@@ -315,7 +315,7 @@
 				9C4B0DB42179E54F00A93DEE /* AppDelegate.swift in Sources */,
 				9C4B0DE2217B802200A93DEE /* Networking.swift in Sources */,
 				9C4B0DEA217BA8BF00A93DEE /* TransactionListResponse.swift in Sources */,
-				9C4B0DED217BA8F300A93DEE /* TransactionDetail.swift in Sources */,
+				9C4B0DED217BA8F300A93DEE /* Transaction.swift in Sources */,
 				9C4B0DF2217BA94300A93DEE /* Identifier.swift in Sources */,
 				9C4B0DF0217BA92A00A93DEE /* TransactionDirection.swift in Sources */,
 			);
@@ -325,7 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C4B0DF8217BAC1700A93DEE /* TransactionDetailDecodableTests.swift in Sources */,
+				9C4B0DF8217BAC1700A93DEE /* TransactionDecodableTests.swift in Sources */,
 				9C4B0DFA217BAD5700A93DEE /* TransactionListResponseDecodableTests.swift in Sources */,
 				9C4B0DC92179E55000A93DEE /* AirBankIntegrationTests.swift in Sources */,
 				9C4B0DF6217BAB1900A93DEE /* helpers.swift in Sources */,

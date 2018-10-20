@@ -1,5 +1,5 @@
 //
-//  TransactionDetail.swift
+//  Transaction.swift
 //  AirBank
 //
 //  Created by Tom Kraina on 20/10/2018.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct TransactionDetail: Codable, Identifiable {
+struct Transaction: Codable, Identifiable {
     
-    let id: Identifier<TransactionDetail>
+    let id: Identifier<Transaction>
     let amountInAccountCurrency: Int
     let direction: TransactionDirection
 }

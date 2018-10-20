@@ -9,5 +9,5 @@
 import Foundation
 
 struct TransactionListResponse: Codable {
-    let items: [TransactionDetail]
+    let items: [Transaction]
 }
