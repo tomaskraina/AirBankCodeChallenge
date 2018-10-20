@@ -1,0 +1,29 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "amountInAccountCurrency": 1056,
+            "direction": "INCOMING"
+        },
+        {
+            "id": 2,
+            "amountInAccountCurrency": 187,
+            "direction": "INCOMING"
+        },
+        {
+            "id": 3,
+            "amountInAccountCurrency": 1045,
+            "direction": "OUTGOING"
+        },
+        {
+            "id": 4,
+            "amountInAccountCurrency": 2045,
+            "direction": "OUTGOING"
+        },
+        {
+            "id": 5,
+            "amountInAccountCurrency": 1066,
+            "direction": "OUTGOING"
+        }
+    ]
+}
