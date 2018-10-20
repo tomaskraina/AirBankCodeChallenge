@@ -22,6 +22,7 @@ public protocol Endpoint: Path, URLConvertible {
     var parameters: [String: Any]? { get }
 }
 
+// MARK: - Endpoint + default implementation
 extension Endpoint {
     var method: Alamofire.HTTPMethod {
         return .get
@@ -39,12 +40,13 @@ extension Endpoint {
 
 // MARK: - AirBankEndpoint
 
-enum AirBankEndpoint: Endpoint {
-    
-    typealias Identifier = String
-    
+enum AirBankEndpoint {
     case transactionList
-    case transactionDetail(id: Identifier)
+    case transactionDetails(id: Identifier<Transaction>)
+}
+
+// MARK: - AirBankEndpoint+Endpoint
+extension AirBankEndpoint: Endpoint {
     
     var baseURL: URL {
         return URL(string: "https://demo0569565.mockable.io/")!
@@ -55,8 +57,8 @@ enum AirBankEndpoint: Endpoint {
         case .transactionList:
             return "transactions"
             
-        case let .transactionDetail(id):
-            return "transactions/\(id)"
+        case let .transactionDetails(id):
+            return "transactions/\(id.rawValue)"
         }
     }
 }

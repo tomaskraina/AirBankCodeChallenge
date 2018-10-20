@@ -29,4 +29,23 @@ class AirBankIntegrationTests: XCTestCase {
         
         wait(for: [expectation], timeout: 100)
     }
+    
+    func testRequestTransactionDetails() {
+        
+        let expectation = self.expectation(description: "Response received")
+        let endpoint = AirBankEndpoint.transactionDetails(id: 1)
+        Networking.shared.request(endpoint: endpoint) { (result: Result<TransactionDetailsResponse>) in
+            switch result {
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+                
+            case .success:
+                break
+            }
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 100)
+    }
 }
