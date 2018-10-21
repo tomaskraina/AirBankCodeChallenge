@@ -14,8 +14,8 @@ class AirBankIntegrationTests: XCTestCase {
     func testRequestTransactionList() {
         
         let expectation = self.expectation(description: "Response received")
-        let endpoint = AirBankEndpoint.transactionList
-        Networking.shared.request(endpoint: endpoint) { (result: Result<TransactionListResponse>) in
+        ApiClient.init(networking: Networking.shared).requestTransactionList { (result) in
+            
             switch result {
             case .failure(let error):
                 XCTFail(error.localizedDescription)
@@ -33,8 +33,8 @@ class AirBankIntegrationTests: XCTestCase {
     func testRequestTransactionDetails() {
         
         let expectation = self.expectation(description: "Response received")
-        let endpoint = AirBankEndpoint.transactionDetails(id: 1)
-        Networking.shared.request(endpoint: endpoint) { (result: Result<TransactionDetailsResponse>) in
+        ApiClient.init(networking: Networking.shared).requestTransactionDetails(id: 1) { result in
+        
             switch result {
             case .failure(let error):
                 XCTFail(error.localizedDescription)

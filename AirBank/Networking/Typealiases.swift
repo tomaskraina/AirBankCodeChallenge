@@ -7,5 +7,7 @@
 //
 
 import enum Alamofire.Result
+import class Alamofire.DataRequest
 
 typealias Result = Alamofire.Result
+typealias DataRequest = Alamofire.DataRequest
