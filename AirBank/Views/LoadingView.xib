@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoadingView" customModule="AirBank" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="Fqa-2X-qam" id="JpE-qL-UQD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Fqa-2X-qam">
+                    <rect key="frame" x="177.5" y="30.5" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Fqa-2X-qam" secondAttribute="trailing" priority="500" constant="20" id="82S-gS-a56"/>
+                <constraint firstItem="Fqa-2X-qam" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="500" constant="20" id="9dK-Hd-xja"/>
+                <constraint firstItem="Fqa-2X-qam" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="JNk-8y-XlZ"/>
+                <constraint firstItem="Fqa-2X-qam" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bMf-No-XAb"/>
+                <constraint firstItem="Fqa-2X-qam" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" priority="500" constant="20" id="gJR-dy-015"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fqa-2X-qam" secondAttribute="bottom" priority="500" constant="20" id="oRe-ys-Y8J"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="173.59999999999999" y="-215.44227886056973"/>
+        </view>
+    </objects>
+</document>

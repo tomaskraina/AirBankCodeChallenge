@@ -60,7 +60,7 @@ class ListViewModel: ListViewModelling {
     
     func image(at index: Int) -> UIImage? {
         let item = items[index]
-        return image(for: item.direction)
+        return item.direction.image
     }
     
     func title(at index: Int) -> String? {
@@ -71,26 +71,30 @@ class ListViewModel: ListViewModelling {
     
     func subtitle(at index: Int) -> String? {
         let item = items[index]
-        return text(for: item.direction)
+        return item.direction.localizedString
     }
-    
-    // MARK: - Helpers
-    
-    private func text(for direction: TransactionDirection) -> String {
-        switch direction {
-        case .incoming:
-            return NSLocalizedString("transaction.INCOMING", comment: "Text for an incoming direction")
-        case .outgoing:
-            return NSLocalizedString("transaction.OUTGOING", comment: "Text for an outgoing direction")
-        }
-    }
-    
-    private func image(for direction: TransactionDirection) -> UIImage {
-        switch direction {
+}
+
+// MARK: - TransactionDirection+image
+extension TransactionDirection {
+    var image: UIImage {
+        switch self {
         case .incoming:
             return Asset.arrowRight.image
         case .outgoing:
             return Asset.arrowLeft.image
+        }
+    }
+}
+
+// MARK: - TransactionDirection+localizedString
+extension TransactionDirection {
+    var localizedString: String {
+        switch self {
+        case .incoming:
+            return NSLocalizedString("transaction.INCOMING", comment: "Text for an incoming direction")
+        case .outgoing:
+            return NSLocalizedString("transaction.OUTGOING", comment: "Text for an outgoing direction")
         }
     }
 }

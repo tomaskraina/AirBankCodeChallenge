@@ -34,11 +34,15 @@ class MainFlowCoordinator {
         window.makeKeyAndVisible()
     }
     
-    func showDetail(transactionId: Identifier<Transaction>) {
+    func showDetail(transaction: Transaction) {
         
         let viewController = StoryboardScene.Detail.initialScene.instantiate()
         
         // TODO: dependency injection & config
+        
+        let apiClient = ApiClient(networking: Networking.shared)
+        let viewModel = DetailViewModel(transaction: transaction, apiClient: apiClient)
+        viewController.viewModel = viewModel
 
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -47,7 +51,7 @@ class MainFlowCoordinator {
 
 // MARK: - MainFlowCoordinator: ListViewControllerDelegate
 extension MainFlowCoordinator: ListViewControllerDelegate {
-    func list(viewController: ListViewController, didSelectItem id: Identifier<Transaction>) {
-        showDetail(transactionId: id)
+    func list(viewController: ListViewController, didSelect item: Transaction) {
+        showDetail(transaction: item)
     }
 }

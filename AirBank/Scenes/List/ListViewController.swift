@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ListViewControllerDelegate: AnyObject {
-    func list(viewController: ListViewController, didSelectItem id: Identifier<Transaction>)
+    func list(viewController: ListViewController, didSelect item: Transaction)
 }
 
 class ListViewController: UITableViewController {
@@ -19,6 +19,7 @@ class ListViewController: UITableViewController {
     var viewModel: ListViewModelling? {
         didSet {
             setupBinding()
+            viewModel?.reload()
         }
     }
     
@@ -75,6 +76,6 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = viewModel?.items[indexPath.row] else { return }
-        delegate?.list(viewController: self, didSelectItem: item.id)
+        delegate?.list(viewController: self, didSelect: item)
     }
 }

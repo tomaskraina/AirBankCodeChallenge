@@ -41,6 +41,11 @@
 		9C4B0E2E217C9F4300A93DEE /* UIView+fullSizeContraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E2D217C9F4300A93DEE /* UIView+fullSizeContraints.swift */; };
 		9C4B0E30217CA26E00A93DEE /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E2F217CA26E00A93DEE /* ListViewModel.swift */; };
 		9C4B0E31217CB13300A93DEE /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0E1D217C659000A93DEE /* Detail.storyboard */; };
+		9C4B0E35217CD20400A93DEE /* ContraAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0E34217CD20400A93DEE /* ContraAccountView.xib */; };
+		9C4B0E37217CD21800A93DEE /* ContraAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E36217CD21800A93DEE /* ContraAccountView.swift */; };
+		9C4B0E39217CD4B600A93DEE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E38217CD4B600A93DEE /* LoadingView.swift */; };
+		9C4B0E3B217CD4C000A93DEE /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0E3A217CD4C000A93DEE /* LoadingView.xib */; };
+		9C4B0E3D217CDAD200A93DEE /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E3C217CDAD200A93DEE /* DetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +99,11 @@
 		9C4B0E2B217C9F1900A93DEE /* UIView+nibLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+nibLoading.swift"; sourceTree = "<group>"; };
 		9C4B0E2D217C9F4300A93DEE /* UIView+fullSizeContraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+fullSizeContraints.swift"; sourceTree = "<group>"; };
 		9C4B0E2F217CA26E00A93DEE /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		9C4B0E34217CD20400A93DEE /* ContraAccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContraAccountView.xib; sourceTree = "<group>"; };
+		9C4B0E36217CD21800A93DEE /* ContraAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContraAccountView.swift; sourceTree = "<group>"; };
+		9C4B0E38217CD4B600A93DEE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		9C4B0E3A217CD4C000A93DEE /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		9C4B0E3C217CDAD200A93DEE /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				9C4B0DB52179E54F00A93DEE /* DetailViewController.swift */,
+				9C4B0E3C217CDAD200A93DEE /* DetailViewModel.swift */,
 				9C4B0E1D217C659000A93DEE /* Detail.storyboard */,
 			);
 			path = Detail;
@@ -266,6 +277,10 @@
 		9C4B0E2A217C9A9800A93DEE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9C4B0E34217CD20400A93DEE /* ContraAccountView.xib */,
+				9C4B0E36217CD21800A93DEE /* ContraAccountView.swift */,
+				9C4B0E38217CD4B600A93DEE /* LoadingView.swift */,
+				9C4B0E3A217CD4C000A93DEE /* LoadingView.xib */,
 				9C4B0E26217C9A9300A93DEE /* TransactionTableViewCell.swift */,
 				9C4B0E27217C9A9300A93DEE /* TransactionTableViewCell.xib */,
 				9C4B0E2B217C9F1900A93DEE /* UIView+nibLoading.swift */,
@@ -360,7 +375,9 @@
 				9C4B0E29217C9A9300A93DEE /* TransactionTableViewCell.xib in Resources */,
 				9C4B0DBB2179E55000A93DEE /* Assets.xcassets in Resources */,
 				9C4B0E31217CB13300A93DEE /* Detail.storyboard in Resources */,
+				9C4B0E3B217CD4C000A93DEE /* LoadingView.xib in Resources */,
 				9C4B0E1C217C641B00A93DEE /* List.storyboard in Resources */,
+				9C4B0E35217CD20400A93DEE /* ContraAccountView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +425,7 @@
 				9C4B0E13217C5E7C00A93DEE /* ApiClient.swift in Sources */,
 				9C4B0E2C217C9F1900A93DEE /* UIView+nibLoading.swift in Sources */,
 				9C4B0DF4217BAAB500A93DEE /* Typealiases.swift in Sources */,
+				9C4B0E39217CD4B600A93DEE /* LoadingView.swift in Sources */,
 				9C4B0DB62179E54F00A93DEE /* DetailViewController.swift in Sources */,
 				9C4B0E18217C62DF00A93DEE /* ListViewController.swift in Sources */,
 				9C4B0DD8217B73ED00A93DEE /* AirBankEndpoint.swift in Sources */,
@@ -415,12 +433,14 @@
 				9C4B0DB42179E54F00A93DEE /* AppDelegate.swift in Sources */,
 				9C4B0E2E217C9F4300A93DEE /* UIView+fullSizeContraints.swift in Sources */,
 				9C4B0DE2217B802200A93DEE /* Networking.swift in Sources */,
+				9C4B0E3D217CDAD200A93DEE /* DetailViewModel.swift in Sources */,
 				9C4B0E30217CA26E00A93DEE /* ListViewModel.swift in Sources */,
 				9C4B0E21217C8C6400A93DEE /* Storyboard Scenes.swift in Sources */,
 				9C4B0DEA217BA8BF00A93DEE /* TransactionListResponse.swift in Sources */,
 				9C4B0E25217C902000A93DEE /* Assets.swift in Sources */,
 				9C4B0DED217BA8F300A93DEE /* Transaction.swift in Sources */,
 				9C4B0E28217C9A9300A93DEE /* TransactionTableViewCell.swift in Sources */,
+				9C4B0E37217CD21800A93DEE /* ContraAccountView.swift in Sources */,
 				9C4B0DF2217BA94300A93DEE /* Identifier.swift in Sources */,
 				9C4B0DFF217BB0CC00A93DEE /* TransactionDetailsResponse.swift in Sources */,
 				9C4B0E22217C8C6400A93DEE /* Storyboard Segues.swift in Sources */,
