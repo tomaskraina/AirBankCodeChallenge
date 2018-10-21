@@ -32,11 +32,20 @@ class ListViewController: UITableViewController {
 
         title = NSLocalizedString("title.list", comment: "Title on the 'List' scene.")
         tableView.register(TransactionTableViewCell.nib()!, forCellReuseIdentifier: TransactionTableViewCell.nibName())
-        
-        // TODO: pull-to-reload
-        
+        tableView.refreshControl = makeRefreshControl()
+            
         setupBinding()
         viewModel?.reload()
+    }
+    
+    // MARK: - IBAction
+    
+    @IBAction func pulledToRefresh(sender: UIRefreshControl) {
+        viewModel?.reload()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            sender.endRefreshing()
+        }
     }
     
     // MARK: - Helpers
@@ -55,6 +64,15 @@ class ListViewController: UITableViewController {
         }
     }
 
+    func makeRefreshControl() -> UIRefreshControl {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self,
+            action: #selector(pulledToRefresh(sender:)),
+            for: .valueChanged)
+        return refreshControl
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
