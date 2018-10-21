@@ -1,0 +1,12 @@
+ib:
+  inputs: ./AirBank/Scenes
+  outputs:
+    - templateName: scenes-swift4
+      output: ./AirBank/Generated Code/Storyboard Scenes.swift
+    - templateName: segues-swift4
+      output: ./AirBank/Generated Code/Storyboard Segues.swift
+xcassets:
+  inputs: ./AirBank/Assets.xcassets
+  outputs:
+    templateName: swift4
+    output: ./AirBank/Generated Code/Assets.swift

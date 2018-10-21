@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C4B0DB42179E54F00A93DEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DB32179E54F00A93DEE /* AppDelegate.swift */; };
-		9C4B0DB62179E54F00A93DEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DB52179E54F00A93DEE /* ViewController.swift */; };
-		9C4B0DB92179E54F00A93DEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0DB72179E54F00A93DEE /* Main.storyboard */; };
+		9C4B0DB62179E54F00A93DEE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DB52179E54F00A93DEE /* DetailViewController.swift */; };
 		9C4B0DBB2179E55000A93DEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0DBA2179E55000A93DEE /* Assets.xcassets */; };
 		9C4B0DBE2179E55000A93DEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0DBC2179E55000A93DEE /* LaunchScreen.storyboard */; };
 		9C4B0DC92179E55000A93DEE /* AirBankIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DC82179E55000A93DEE /* AirBankIntegrationTests.swift */; };
@@ -30,6 +29,17 @@
 		9C4B0E01217BB26200A93DEE /* transactionDetails-success.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0E00217BB26200A93DEE /* transactionDetails-success.json */; };
 		9C4B0E03217BB29F00A93DEE /* TransactionDetailsResponseDecodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E02217BB29F00A93DEE /* TransactionDetailsResponseDecodableTests.swift */; };
 		9C4B0E13217C5E7C00A93DEE /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E12217C5E7C00A93DEE /* ApiClient.swift */; };
+		9C4B0E18217C62DF00A93DEE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E17217C62DF00A93DEE /* ListViewController.swift */; };
+		9C4B0E1A217C630D00A93DEE /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E19217C630D00A93DEE /* MainFlowCoordinator.swift */; };
+		9C4B0E1C217C641B00A93DEE /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0E1B217C641B00A93DEE /* List.storyboard */; };
+		9C4B0E21217C8C6400A93DEE /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E1F217C8C6400A93DEE /* Storyboard Scenes.swift */; };
+		9C4B0E22217C8C6400A93DEE /* Storyboard Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E20217C8C6400A93DEE /* Storyboard Segues.swift */; };
+		9C4B0E25217C902000A93DEE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E24217C902000A93DEE /* Assets.swift */; };
+		9C4B0E28217C9A9300A93DEE /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E26217C9A9300A93DEE /* TransactionTableViewCell.swift */; };
+		9C4B0E29217C9A9300A93DEE /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0E27217C9A9300A93DEE /* TransactionTableViewCell.xib */; };
+		9C4B0E2C217C9F1900A93DEE /* UIView+nibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E2B217C9F1900A93DEE /* UIView+nibLoading.swift */; };
+		9C4B0E2E217C9F4300A93DEE /* UIView+fullSizeContraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E2D217C9F4300A93DEE /* UIView+fullSizeContraints.swift */; };
+		9C4B0E30217CA26E00A93DEE /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E2F217CA26E00A93DEE /* ListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +55,7 @@
 /* Begin PBXFileReference section */
 		9C4B0DB02179E54F00A93DEE /* AirBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4B0DB32179E54F00A93DEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9C4B0DB52179E54F00A93DEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9C4B0DB82179E54F00A93DEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9C4B0DB52179E54F00A93DEE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9C4B0DBA2179E55000A93DEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C4B0DBD2179E55000A93DEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C4B0DBF2179E55000A93DEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +81,18 @@
 		9C4B0E00217BB26200A93DEE /* transactionDetails-success.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "transactionDetails-success.json"; sourceTree = "<group>"; };
 		9C4B0E02217BB29F00A93DEE /* TransactionDetailsResponseDecodableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsResponseDecodableTests.swift; sourceTree = "<group>"; };
 		9C4B0E12217C5E7C00A93DEE /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		9C4B0E17217C62DF00A93DEE /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		9C4B0E19217C630D00A93DEE /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
+		9C4B0E1B217C641B00A93DEE /* List.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
+		9C4B0E1D217C659000A93DEE /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		9C4B0E1F217C8C6400A93DEE /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
+		9C4B0E20217C8C6400A93DEE /* Storyboard Segues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Segues.swift"; sourceTree = "<group>"; };
+		9C4B0E24217C902000A93DEE /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		9C4B0E26217C9A9300A93DEE /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		9C4B0E27217C9A9300A93DEE /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
+		9C4B0E2B217C9F1900A93DEE /* UIView+nibLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+nibLoading.swift"; sourceTree = "<group>"; };
+		9C4B0E2D217C9F4300A93DEE /* UIView+fullSizeContraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+fullSizeContraints.swift"; sourceTree = "<group>"; };
+		9C4B0E2F217CA26E00A93DEE /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,9 +139,11 @@
 		9C4B0DB22179E54F00A93DEE /* AirBank */ = {
 			isa = PBXGroup;
 			children = (
+				9C4B0E1E217C8C6400A93DEE /* Generated Code */,
 				9C4B0DB32179E54F00A93DEE /* AppDelegate.swift */,
-				9C4B0DB52179E54F00A93DEE /* ViewController.swift */,
-				9C4B0DB72179E54F00A93DEE /* Main.storyboard */,
+				9C4B0E23217C8C9B00A93DEE /* Flow Coordinators */,
+				9C4B0E2A217C9A9800A93DEE /* Views */,
+				9C4B0E14217C613D00A93DEE /* Scenes */,
 				9C4B0DBA2179E55000A93DEE /* Assets.xcassets */,
 				9C4B0DBC2179E55000A93DEE /* LaunchScreen.storyboard */,
 				9C4B0DBF2179E55000A93DEE /* Info.plist */,
@@ -191,6 +214,63 @@
 				9C4B0E00217BB26200A93DEE /* transactionDetails-success.json */,
 			);
 			path = "Sample Responses";
+			sourceTree = "<group>";
+		};
+		9C4B0E14217C613D00A93DEE /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B0E16217C615800A93DEE /* List */,
+				9C4B0E15217C615200A93DEE /* Detail */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		9C4B0E15217C615200A93DEE /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B0DB52179E54F00A93DEE /* DetailViewController.swift */,
+				9C4B0E1D217C659000A93DEE /* Detail.storyboard */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		9C4B0E16217C615800A93DEE /* List */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B0E17217C62DF00A93DEE /* ListViewController.swift */,
+				9C4B0E2F217CA26E00A93DEE /* ListViewModel.swift */,
+				9C4B0E1B217C641B00A93DEE /* List.storyboard */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		9C4B0E1E217C8C6400A93DEE /* Generated Code */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B0E24217C902000A93DEE /* Assets.swift */,
+				9C4B0E1F217C8C6400A93DEE /* Storyboard Scenes.swift */,
+				9C4B0E20217C8C6400A93DEE /* Storyboard Segues.swift */,
+			);
+			path = "Generated Code";
+			sourceTree = "<group>";
+		};
+		9C4B0E23217C8C9B00A93DEE /* Flow Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B0E19217C630D00A93DEE /* MainFlowCoordinator.swift */,
+			);
+			path = "Flow Coordinators";
+			sourceTree = "<group>";
+		};
+		9C4B0E2A217C9A9800A93DEE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9C4B0E26217C9A9300A93DEE /* TransactionTableViewCell.swift */,
+				9C4B0E27217C9A9300A93DEE /* TransactionTableViewCell.xib */,
+				9C4B0E2B217C9F1900A93DEE /* UIView+nibLoading.swift */,
+				9C4B0E2D217C9F4300A93DEE /* UIView+fullSizeContraints.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,8 +356,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4B0DBE2179E55000A93DEE /* LaunchScreen.storyboard in Resources */,
+				9C4B0E29217C9A9300A93DEE /* TransactionTableViewCell.xib in Resources */,
 				9C4B0DBB2179E55000A93DEE /* Assets.xcassets in Resources */,
-				9C4B0DB92179E54F00A93DEE /* Main.storyboard in Resources */,
+				9C4B0E1C217C641B00A93DEE /* List.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,15 +404,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4B0E13217C5E7C00A93DEE /* ApiClient.swift in Sources */,
+				9C4B0E2C217C9F1900A93DEE /* UIView+nibLoading.swift in Sources */,
 				9C4B0DF4217BAAB500A93DEE /* Typealiases.swift in Sources */,
-				9C4B0DB62179E54F00A93DEE /* ViewController.swift in Sources */,
+				9C4B0DB62179E54F00A93DEE /* DetailViewController.swift in Sources */,
+				9C4B0E18217C62DF00A93DEE /* ListViewController.swift in Sources */,
 				9C4B0DD8217B73ED00A93DEE /* AirBankEndpoint.swift in Sources */,
+				9C4B0E1A217C630D00A93DEE /* MainFlowCoordinator.swift in Sources */,
 				9C4B0DB42179E54F00A93DEE /* AppDelegate.swift in Sources */,
+				9C4B0E2E217C9F4300A93DEE /* UIView+fullSizeContraints.swift in Sources */,
 				9C4B0DE2217B802200A93DEE /* Networking.swift in Sources */,
+				9C4B0E30217CA26E00A93DEE /* ListViewModel.swift in Sources */,
+				9C4B0E21217C8C6400A93DEE /* Storyboard Scenes.swift in Sources */,
 				9C4B0DEA217BA8BF00A93DEE /* TransactionListResponse.swift in Sources */,
+				9C4B0E25217C902000A93DEE /* Assets.swift in Sources */,
 				9C4B0DED217BA8F300A93DEE /* Transaction.swift in Sources */,
+				9C4B0E28217C9A9300A93DEE /* TransactionTableViewCell.swift in Sources */,
 				9C4B0DF2217BA94300A93DEE /* Identifier.swift in Sources */,
 				9C4B0DFF217BB0CC00A93DEE /* TransactionDetailsResponse.swift in Sources */,
+				9C4B0E22217C8C6400A93DEE /* Storyboard Segues.swift in Sources */,
 				9C4B0DF0217BA92A00A93DEE /* TransactionDirection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,14 +449,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9C4B0DB72179E54F00A93DEE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C4B0DB82179E54F00A93DEE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9C4B0DBC2179E55000A93DEE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
