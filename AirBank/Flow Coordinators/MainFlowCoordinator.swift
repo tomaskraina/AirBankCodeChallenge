@@ -27,6 +27,7 @@ class MainFlowCoordinator {
         let apiClient = ApiClient(networking: Networking.shared)
         let viewModel = ListViewModel(apiClient: apiClient)
         viewController.viewModel = viewModel
+        viewController.delegate = self
         
         navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
@@ -42,4 +43,11 @@ class MainFlowCoordinator {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
+}
+
+// MARK: - MainFlowCoordinator: ListViewControllerDelegate
+extension MainFlowCoordinator: ListViewControllerDelegate {
+    func list(viewController: ListViewController, didSelectItem id: Identifier<Transaction>) {
+        showDetail(transactionId: id)
+    }
 }

@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
+    var mainFlowCoordinator: MainFlowCoordinator?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -22,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let flowCoordinator = MainFlowCoordinator(window: window)
         flowCoordinator.loadRootViewController()
+        mainFlowCoordinator = flowCoordinator
         
         return true
     }

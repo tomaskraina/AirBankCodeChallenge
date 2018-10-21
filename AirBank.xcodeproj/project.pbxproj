@@ -40,6 +40,7 @@
 		9C4B0E2C217C9F1900A93DEE /* UIView+nibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E2B217C9F1900A93DEE /* UIView+nibLoading.swift */; };
 		9C4B0E2E217C9F4300A93DEE /* UIView+fullSizeContraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E2D217C9F4300A93DEE /* UIView+fullSizeContraints.swift */; };
 		9C4B0E30217CA26E00A93DEE /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E2F217CA26E00A93DEE /* ListViewModel.swift */; };
+		9C4B0E31217CB13300A93DEE /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0E1D217C659000A93DEE /* Detail.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -358,6 +359,7 @@
 				9C4B0DBE2179E55000A93DEE /* LaunchScreen.storyboard in Resources */,
 				9C4B0E29217C9A9300A93DEE /* TransactionTableViewCell.xib in Resources */,
 				9C4B0DBB2179E55000A93DEE /* Assets.xcassets in Resources */,
+				9C4B0E31217CB13300A93DEE /* Detail.storyboard in Resources */,
 				9C4B0E1C217C641B00A93DEE /* List.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

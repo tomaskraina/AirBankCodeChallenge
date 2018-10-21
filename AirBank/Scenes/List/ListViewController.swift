@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol ListViewControllerDelegate: AnyObject {
+    func list(viewController: ListViewController, didSelectItem id: Identifier<Transaction>)
+}
 
 class ListViewController: UITableViewController {
 
@@ -18,6 +21,8 @@ class ListViewController: UITableViewController {
             setupBinding()
         }
     }
+    
+    weak var delegate: ListViewControllerDelegate?
     
     // MARK: - UIViewController lifecycle
     
@@ -66,5 +71,10 @@ class ListViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let item = viewModel?.items[indexPath.row] else { return }
+        delegate?.list(viewController: self, didSelectItem: item.id)
     }
 }
