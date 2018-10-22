@@ -1,0 +1,33 @@
+
+/* Caption on account bank code field */
+"account.bankCode.caption" = "bank code";
+
+/* Caption on account name field */
+"account.name.caption" = "account name";
+
+/* Caption on account number field */
+"account.number.caption" = "account number";
+
+/* Cancel button title on error alert. */
+"error.network.cancel" = "Cancel";
+
+/* Cancel button title on error alert. */
+"error.network.retry" = "Retry";
+
+/* Title on error alert. */
+"error.network.title" = "Something went wrong";
+
+/* The server responsed with HTTP 404 code. */
+"networking.error.notFound" = "Requested item was not found";
+
+/* Title on the 'Detail' scene. */
+"title.detail" = "Detail";
+
+/* Title on the 'List' scene. */
+"title.list" = "List";
+
+/* Text for an incoming direction */
+"transaction.INCOMING" = "Incoming";
+
+/* Text for an outgoing direction */
+"transaction.OUTGOING" = "Outgoing";
