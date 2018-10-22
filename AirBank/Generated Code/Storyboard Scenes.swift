@@ -3,7 +3,6 @@
 
 // swiftlint:disable sorted_imports
 import Foundation
-import AirBank
 import UIKit
 
 // swiftlint:disable superfluous_disable_command
