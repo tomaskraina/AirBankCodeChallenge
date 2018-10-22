@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = NSLocalizedString("title.detail", comment: "Title on the 'Detail' scene.")
+        title = L10n.Title.detail
         separatorView.backgroundColor = Asset.lightGrayText.color
         
         amountLabel.font = UIFont.transactionAmount

@@ -34,7 +34,7 @@ class ListViewController: UITableViewController, LoadingPresentable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = NSLocalizedString("title.list", comment: "Title on the 'List' scene.")
+        title = L10n.Title.list
         tableView.register(TransactionTableViewCell.nib()!, forCellReuseIdentifier: TransactionTableViewCell.nibName())
         tableView.refreshControl = makeRefreshControl()
         transactionFilterView.delegate = self

@@ -10,3 +10,8 @@ xcassets:
   outputs:
     templateName: swift4
     output: ./AirBank/Generated Code/Assets.swift
+strings:
+  inputs: ./AirBank/Localized Resources/en.lproj/Localizable.strings
+  outputs:
+    templateName: structured-swift4
+    output: ./AirBank/Generated Code/Strings.swift

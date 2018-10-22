@@ -18,7 +18,7 @@ enum NetworkingError: LocalizedError {
             return error.localizedDescription
             
         case .notFound:
-            return NSLocalizedString("networking.error.notFound", comment: "The server responsed with HTTP 404 code.")
+            return L10n.Networking.Error.notFound
         }
     }
 }

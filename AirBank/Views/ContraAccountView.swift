@@ -59,8 +59,8 @@ final class ContraAccountView: UIView {
     private func setup() {
         setupNib()
         
-        accountNumberView.captionLabel.text = NSLocalizedString("account.number.caption", comment: "Caption on account number field")
-        accountNameView.captionLabel.text = NSLocalizedString("account.name.caption", comment: "Caption on account name field")
-        bankCodeView.captionLabel.text = NSLocalizedString("account.bankCode.caption", comment: "Caption on account bank code field")
+        accountNumberView.captionLabel.text = L10n.Account.Number.caption
+        accountNameView.captionLabel.text = L10n.Account.Name.caption
+        bankCodeView.captionLabel.text = L10n.Account.BankCode.caption
     }
 }

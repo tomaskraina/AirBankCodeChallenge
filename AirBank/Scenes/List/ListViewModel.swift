@@ -142,9 +142,9 @@ extension TransactionDirection {
     var localizedString: String {
         switch self {
         case .incoming:
-            return NSLocalizedString("transaction.INCOMING", comment: "Text for an incoming direction")
+            return L10n.Transaction.incoming
         case .outgoing:
-            return NSLocalizedString("transaction.OUTGOING", comment: "Text for an outgoing direction")
+            return L10n.Transaction.outgoing
         }
     }
 }

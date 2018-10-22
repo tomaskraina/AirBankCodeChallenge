@@ -23,11 +23,11 @@ class TransactionDirectionFilterView: UIView {
         var localizedText: String {
             switch self {
             case .all:
-                return NSLocalizedString("filter.all", comment: "Title for filter setting 'all'.")
+                return L10n.Filter.all
             case .incoming:
-                return NSLocalizedString("filter.incoming", comment: "Title for filter setting 'incoming'.")
+                return L10n.Filter.incoming
             case .outgoing:
-                return NSLocalizedString("filter.outgoing", comment: "Title for filter setting 'outgoing'.")
+                return L10n.Filter.outgoing
             }
         }
     }

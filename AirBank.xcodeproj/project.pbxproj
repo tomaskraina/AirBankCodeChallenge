@@ -57,6 +57,7 @@
 		9C9A34EE217DD276006D887C /* TransactionDirectionFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34ED217DD276006D887C /* TransactionDirectionFilterView.swift */; };
 		9C9A34F0217DD2A1006D887C /* TransactionDirectionFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9A34EF217DD2A1006D887C /* TransactionDirectionFilterView.xib */; };
 		9C9A34F2217DF105006D887C /* LoadingPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34F1217DF105006D887C /* LoadingPresentable.swift */; };
+		9C9A34F4217DF719006D887C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34F3217DF718006D887C /* Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		9C9A34ED217DD276006D887C /* TransactionDirectionFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDirectionFilterView.swift; sourceTree = "<group>"; };
 		9C9A34EF217DD2A1006D887C /* TransactionDirectionFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDirectionFilterView.xib; sourceTree = "<group>"; };
 		9C9A34F1217DF105006D887C /* LoadingPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresentable.swift; sourceTree = "<group>"; };
+		9C9A34F3217DF718006D887C /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +292,7 @@
 				9C9A34DE217DC236006D887C /* Fonts.swift */,
 				9C4B0E1F217C8C6400A93DEE /* Storyboard Scenes.swift */,
 				9C4B0E20217C8C6400A93DEE /* Storyboard Segues.swift */,
+				9C9A34F3217DF718006D887C /* Strings.swift */,
 			);
 			path = "Generated Code";
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				9C4B0E30217CA26E00A93DEE /* ListViewModel.swift in Sources */,
 				9C9A34D8217DA7F3006D887C /* UIAlertController+makeAlert.swift in Sources */,
 				9C9A34E1217DC496006D887C /* CurrencyCode.swift in Sources */,
+				9C9A34F4217DF719006D887C /* Strings.swift in Sources */,
 				9C4B0E21217C8C6400A93DEE /* Storyboard Scenes.swift in Sources */,
 				9C4B0DEA217BA8BF00A93DEE /* TransactionListResponse.swift in Sources */,
 				9C4B0E25217C902000A93DEE /* Assets.swift in Sources */,
