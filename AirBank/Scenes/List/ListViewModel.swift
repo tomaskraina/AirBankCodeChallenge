@@ -20,8 +20,10 @@ protocol ListViewModelling: AnyObject {
     var items: [Transaction] { get }
     var onItemsUpdate: (([Transaction]) -> Void)? { get set }
     var onError: ((Error) -> Void)? { get set }
+    var onLoadingUpdate: ((Bool) -> Void)? { get set }
     
     func reload()
+    var isLoading: Bool { get }
     
     func numberOfItems() -> Int
     func image(at index: Int) -> UIImage?
@@ -48,13 +50,31 @@ class ListViewModel: ListViewModelling {
         }
     }
     
-    var onItemsUpdate: (([Transaction]) -> Void)?
+    var onItemsUpdate: (([Transaction]) -> Void)? {
+        didSet {
+            onItemsUpdate?(items)
+        }
+    }
     
     var onError: ((Error) -> Void)?
     
+    private(set) var isLoading: Bool = false {
+        didSet {
+            onLoadingUpdate?(isLoading)
+        }
+    }
+    
+    var onLoadingUpdate: ((Bool) -> Void)? {
+        didSet {
+            onLoadingUpdate?(isLoading)
+        }
+    }
+    
     func reload() {
+        isLoading = true
         apiClient.requestTransactionList { [weak self] (result) in
             guard let self = self else { return }
+            self.isLoading = false
             
             switch result {
             case .success(let value):

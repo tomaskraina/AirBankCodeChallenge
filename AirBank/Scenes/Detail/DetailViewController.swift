@@ -42,7 +42,6 @@ class DetailViewController: UIViewController {
         directionLabel.textColor = Asset.lightGrayText.color
         
         setupBinding()
-        viewModel?.reloadTransactionDetails()
     }
 
     // MARK: - Helpers

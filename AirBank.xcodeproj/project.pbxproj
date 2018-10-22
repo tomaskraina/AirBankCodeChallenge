@@ -56,6 +56,7 @@
 		9C9A34EB217DD126006D887C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0DD42179E62500A93DEE /* LICENSE */; };
 		9C9A34EE217DD276006D887C /* TransactionDirectionFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34ED217DD276006D887C /* TransactionDirectionFilterView.swift */; };
 		9C9A34F0217DD2A1006D887C /* TransactionDirectionFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9A34EF217DD2A1006D887C /* TransactionDirectionFilterView.xib */; };
+		9C9A34F2217DF105006D887C /* LoadingPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34F1217DF105006D887C /* LoadingPresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		9C9A34E9217DD056006D887C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9C9A34ED217DD276006D887C /* TransactionDirectionFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDirectionFilterView.swift; sourceTree = "<group>"; };
 		9C9A34EF217DD2A1006D887C /* TransactionDirectionFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDirectionFilterView.xib; sourceTree = "<group>"; };
+		9C9A34F1217DF105006D887C /* LoadingPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				9C9A34E2217DCA18006D887C /* Dependencies.swift */,
+				9C9A34F1217DF105006D887C /* LoadingPresentable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				9C4B0DFF217BB0CC00A93DEE /* TransactionDetailsResponse.swift in Sources */,
 				9C4B0E22217C8C6400A93DEE /* Storyboard Segues.swift in Sources */,
 				9C9A34DF217DC236006D887C /* Fonts.swift in Sources */,
+				9C9A34F2217DF105006D887C /* LoadingPresentable.swift in Sources */,
 				9C4B0DF0217BA92A00A93DEE /* TransactionDirection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

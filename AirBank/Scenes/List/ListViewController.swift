@@ -12,7 +12,7 @@ protocol ListViewControllerDelegate: AnyObject {
     func list(viewController: ListViewController, didSelect item: Transaction)
 }
 
-class ListViewController: UITableViewController {
+class ListViewController: UITableViewController, LoadingPresentable {
 
     // MARK: - Configuration
     
@@ -40,7 +40,6 @@ class ListViewController: UITableViewController {
         transactionFilterView.delegate = self
             
         setupBinding()
-        viewModel?.reload()
     }
     
     // MARK: - IBAction
@@ -58,7 +57,13 @@ class ListViewController: UITableViewController {
     func setupBinding() {
         guard isViewLoaded else { return }
         
-        // TODO: Show / hide loading
+        viewModel?.onLoadingUpdate = { [weak self] loading in
+            if loading && self?.viewModel?.numberOfItems() == 0 {
+                self?.showLoading()
+            } else {
+                self?.hideLoading()
+            }
+        }
         
         viewModel?.onItemsUpdate = { [weak self] _ in
             self?.tableView.reloadData()
