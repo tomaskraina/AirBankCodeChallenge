@@ -11,6 +11,12 @@ import class UIKit.UIImage
 
 class DetailViewModel {
     
+    enum State {
+        case empty
+        case loading
+        case loaded
+    }
+    
     let transaction: Transaction
     
     let apiClient: ApiClient
@@ -22,11 +28,16 @@ class DetailViewModel {
     
     var isLoadingTransactionDetails: Bool = false {
         didSet {
+            updateState()
             onLoadingTransactionDetailsUpdate?()
         }
     }
     
-    var onLoadingTransactionDetailsUpdate: (() -> Void)?
+    var onLoadingTransactionDetailsUpdate: (() -> Void)? {
+        didSet {
+            onLoadingTransactionDetailsUpdate?()
+        }
+    }
     
     var amountFormatted: String? {
         // TODO: CurrencyFormatter
@@ -43,6 +54,7 @@ class DetailViewModel {
     
     var contraAccountInfo: ContraAccount? {
         didSet {
+            updateState()
             onContraAccountUpdate?()
         }
     }
@@ -54,6 +66,14 @@ class DetailViewModel {
     }
     
     var onError: ((Error) -> Void)?
+    
+    private(set) var state: State = .empty {
+        didSet {
+            onStateUpdate?(state)
+        }
+    }
+    
+    var onStateUpdate: ((State) -> Void)?
     
     func reloadTransactionDetails() {
         isLoadingTransactionDetails = true
@@ -69,6 +89,18 @@ class DetailViewModel {
             }
             
             self.isLoadingTransactionDetails = false
+        }
+    }
+    
+    // MARK: - Helpers
+
+    private func updateState() {
+        if contraAccountInfo != nil {
+            state = .loaded
+        } else if isLoadingTransactionDetails == true {
+            state = .loading
+        } else {
+            state = .empty
         }
     }
 }

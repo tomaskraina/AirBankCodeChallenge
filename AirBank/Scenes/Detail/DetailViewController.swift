@@ -51,38 +51,23 @@ class DetailViewController: UIViewController {
             self?.contraAccountView.accountNameView.valueLabel.text = self?.viewModel?.contraAccountInfo?.accountName
             self?.contraAccountView.accountNumberView.valueLabel.text = self?.viewModel?.contraAccountInfo?.accountNumber
             self?.contraAccountView.bankCodeView.valueLabel.text = self?.viewModel?.contraAccountInfo?.bankCode
-            
-            // TODO: Move this logic to ViewModel
-            let state: State
-            if self?.viewModel?.contraAccountInfo != nil {
-                state = .loaded
-            } else if self?.viewModel?.isLoadingTransactionDetails == true {
-                state = .loading
-            } else {
-                state = .empty
-            }
-            
+        }
+        
+        viewModel?.onStateUpdate = { [weak self] state in
             self?.configure(state: state)
         }
         
         viewModel?.onError = { [weak self] error in
-            guard let self = self else { return }
-            guard self.view.window != nil else { return }
+            guard self?.view.window != nil else { return }
             
             let alert = UIAlertController.makeAlert(error: error, retryHandler: {
-                self.viewModel?.reloadTransactionDetails()
+                self?.viewModel?.reloadTransactionDetails()
             })
-            self.present(alert, animated: true)
+            self?.present(alert, animated: true)
         }
     }
     
-    enum State {
-        case empty
-        case loading
-        case loaded
-    }
-    
-    private func configure(state: State) {
+    private func configure(state: DetailViewModel.State) {
         switch state {
         case .empty:
             loadingView.isHidden = true
