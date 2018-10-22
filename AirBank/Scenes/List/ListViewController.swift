@@ -25,6 +25,10 @@ class ListViewController: UITableViewController {
     
     weak var delegate: ListViewControllerDelegate?
     
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var transactionFilterView: TransactionDirectionFilterView!
+    
     // MARK: - UIViewController lifecycle
     
     override func viewDidLoad() {
@@ -33,6 +37,7 @@ class ListViewController: UITableViewController {
         title = NSLocalizedString("title.list", comment: "Title on the 'List' scene.")
         tableView.register(TransactionTableViewCell.nib()!, forCellReuseIdentifier: TransactionTableViewCell.nibName())
         tableView.refreshControl = makeRefreshControl()
+        transactionFilterView.delegate = self
             
         setupBinding()
         viewModel?.reload()
@@ -101,5 +106,22 @@ class ListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = viewModel?.items[indexPath.row] else { return }
         delegate?.list(viewController: self, didSelect: item)
+    }
+}
+
+// MARK: - ListViewController: TransactionDirectionFilterViewDelegate
+extension ListViewController: TransactionDirectionFilterViewDelegate {
+    func filter(view: TransactionDirectionFilterView, didSelectSegment segment: TransactionDirectionFilterView.Segment) {
+        let filterSetting: ListFilterSetting
+        switch segment {
+        case .all:
+            filterSetting = .all
+        case .incoming:
+            filterSetting = .incomingTransactions
+        case .outgoing:
+            filterSetting = .outgoingTransactions
+        }
+        
+        viewModel?.filterSetting = filterSetting
     }
 }

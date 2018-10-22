@@ -16,11 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="x6x-tS-Bzf" customClass="TransactionDirectionFilterView" customModule="AirBank" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="DgK-iJ-tXG" id="t6b-W5-ZxO"/>
                             <outlet property="delegate" destination="DgK-iJ-tXG" id="DR3-IF-tab"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="transactionFilterView" destination="x6x-tS-Bzf" id="yJG-PU-Tc0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hv-UN-3yw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

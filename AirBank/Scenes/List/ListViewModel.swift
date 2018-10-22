@@ -9,7 +9,14 @@
 import Foundation
 import class UIKit.UIImage
 
+enum ListFilterSetting {
+    case all
+    case incomingTransactions
+    case outgoingTransactions
+}
+
 protocol ListViewModelling: AnyObject {
+    var filterSetting: ListFilterSetting { get set }
     var items: [Transaction] { get }
     var onItemsUpdate: (([Transaction]) -> Void)? { get set }
     var onError: ((Error) -> Void)? { get set }
@@ -35,7 +42,7 @@ class ListViewModel: ListViewModelling {
         self.currencyFormatter = dependencies.currencyFormatter
     }
     
-    private(set) var items: [Transaction] = [] {
+    var filterSetting: ListFilterSetting = .all {
         didSet {
             onItemsUpdate?(items)
         }
@@ -51,11 +58,22 @@ class ListViewModel: ListViewModelling {
             
             switch result {
             case .success(let value):
-                self.items = value.items
+                self.unfilteredItems = value.items
                 
             case .failure(let error):
                 self.onError?(error)
             }
+        }
+    }
+    
+    var items: [Transaction] {
+        switch filterSetting {
+        case .all:
+            return unfilteredItems
+        case .incomingTransactions:
+            return unfilteredItems.filter { $0.direction == .incoming }
+        case .outgoingTransactions:
+            return unfilteredItems.filter { $0.direction == .outgoing }
         }
     }
     
@@ -76,6 +94,14 @@ class ListViewModel: ListViewModelling {
     func subtitle(at index: Int) -> String? {
         let item = items[index]
         return item.direction.localizedString
+    }
+    
+    // MARK: - Privates
+    
+    private var unfilteredItems: [Transaction] = [] {
+        didSet {
+            onItemsUpdate?(items)
+        }
     }
 }
 

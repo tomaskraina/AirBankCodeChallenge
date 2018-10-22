@@ -31,3 +31,12 @@
 
 /* Text for an outgoing direction */
 "transaction.OUTGOING" = "Outgoing";
+
+/* Title for filter setting 'all'. */
+"filter.all" = "All";
+
+/* Title for filter setting 'incoming'. */
+"filter.incoming" = "Incoming";
+
+/* Title for filter setting 'outgoing'. */
+"filter.outgoing" = "Outgoing";

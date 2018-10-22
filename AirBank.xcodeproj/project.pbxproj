@@ -53,6 +53,9 @@
 		9C9A34E1217DC496006D887C /* CurrencyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34E0217DC496006D887C /* CurrencyCode.swift */; };
 		9C9A34E3217DCA18006D887C /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34E2217DCA18006D887C /* Dependencies.swift */; };
 		9C9A34E8217DD056006D887C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C9A34EA217DD056006D887C /* Localizable.strings */; };
+		9C9A34EB217DD126006D887C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0DD42179E62500A93DEE /* LICENSE */; };
+		9C9A34EE217DD276006D887C /* TransactionDirectionFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34ED217DD276006D887C /* TransactionDirectionFilterView.swift */; };
+		9C9A34F0217DD2A1006D887C /* TransactionDirectionFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9A34EF217DD2A1006D887C /* TransactionDirectionFilterView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +121,8 @@
 		9C9A34E0217DC496006D887C /* CurrencyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCode.swift; sourceTree = "<group>"; };
 		9C9A34E2217DCA18006D887C /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		9C9A34E9217DD056006D887C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9C9A34ED217DD276006D887C /* TransactionDirectionFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDirectionFilterView.swift; sourceTree = "<group>"; };
+		9C9A34EF217DD2A1006D887C /* TransactionDirectionFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionDirectionFilterView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +181,7 @@
 				9C4B0DD9217B73F200A93DEE /* Networking */,
 				9C9A34E4217DCA21006D887C /* Protocols */,
 				9C4B0E14217C613D00A93DEE /* Scenes */,
-				9C9A34D7217DA7F3006D887C /* UIAlertController+makeAlert.swift */,
+				9C9A34EC217DD21D006D887C /* Alerts */,
 				9C4B0E2A217C9A9800A93DEE /* Views */,
 			);
 			path = AirBank;
@@ -300,6 +305,8 @@
 			children = (
 				9C4B0E34217CD20400A93DEE /* ContraAccountView.xib */,
 				9C4B0E36217CD21800A93DEE /* ContraAccountView.swift */,
+				9C9A34ED217DD276006D887C /* TransactionDirectionFilterView.swift */,
+				9C9A34EF217DD2A1006D887C /* TransactionDirectionFilterView.xib */,
 				9C4B0E38217CD4B600A93DEE /* LoadingView.swift */,
 				9C4B0E3A217CD4C000A93DEE /* LoadingView.xib */,
 				9C4B0E26217C9A9300A93DEE /* TransactionTableViewCell.swift */,
@@ -332,6 +339,14 @@
 				9C9A34EA217DD056006D887C /* Localizable.strings */,
 			);
 			path = "Localized Resources";
+			sourceTree = "<group>";
+		};
+		9C9A34EC217DD21D006D887C /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				9C9A34D7217DA7F3006D887C /* UIAlertController+makeAlert.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,9 +434,11 @@
 				9C4B0DBE2179E55000A93DEE /* LaunchScreen.storyboard in Resources */,
 				9C4B0E29217C9A9300A93DEE /* TransactionTableViewCell.xib in Resources */,
 				9C4B0DBB2179E55000A93DEE /* Assets.xcassets in Resources */,
+				9C9A34F0217DD2A1006D887C /* TransactionDirectionFilterView.xib in Resources */,
 				9C4B0E31217CB13300A93DEE /* Detail.storyboard in Resources */,
 				9C4B0E3B217CD4C000A93DEE /* LoadingView.xib in Resources */,
 				9C9A34E8217DD056006D887C /* Localizable.strings in Resources */,
+				9C9A34EB217DD126006D887C /* LICENSE in Resources */,
 				9C4B0E1C217C641B00A93DEE /* List.storyboard in Resources */,
 				9C4B0E35217CD20400A93DEE /* ContraAccountView.xib in Resources */,
 			);
@@ -477,6 +494,7 @@
 				9C4B0DB62179E54F00A93DEE /* DetailViewController.swift in Sources */,
 				9C4B0E18217C62DF00A93DEE /* ListViewController.swift in Sources */,
 				9C4B0DD8217B73ED00A93DEE /* AirBankEndpoint.swift in Sources */,
+				9C9A34EE217DD276006D887C /* TransactionDirectionFilterView.swift in Sources */,
 				9C4B0E1A217C630D00A93DEE /* MainFlowCoordinator.swift in Sources */,
 				9C4B0DB42179E54F00A93DEE /* AppDelegate.swift in Sources */,
 				9C4B0E2E217C9F4300A93DEE /* UIView+fullSizeContraints.swift in Sources */,
