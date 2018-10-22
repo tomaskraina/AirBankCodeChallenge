@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var directionImageView: UIImageView!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var directionLabel: UILabel!
+    @IBOutlet weak var separatorView: UIView!
     
     @IBOutlet weak var loadingView: LoadingView!
     @IBOutlet weak var contraAccountView: ContraAccountView!
@@ -33,6 +34,12 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         title = NSLocalizedString("title.detail", comment: "Title on the 'Detail' scene.")
+        separatorView.backgroundColor = Asset.darkGrayText.color
+        
+        amountLabel.font = UIFont.transactionAmount
+        directionLabel.font = .transactionDirection
+        amountLabel.textColor = Asset.darkGrayText.color
+        directionLabel.textColor = Asset.lightGrayText.color
         
         setupBinding()
         viewModel?.reloadTransactionDetails()

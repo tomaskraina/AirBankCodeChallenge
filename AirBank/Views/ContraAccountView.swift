@@ -15,7 +15,26 @@ final class CaptionValueLabelPairView: UIStackView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // TODO: Styling
+        applyStyling()
+    }
+    
+    private func applyStyling() {
+        captionLabel.font = captionFont
+        valueLabel.font = valueFont
+        captionLabel.textColor = Asset.darkGrayText.color
+        valueLabel.textColor = Asset.darkGrayText.color
+    }
+    
+    var captionFont: UIFont = UIFont.preferredFont(forTextStyle: .body) {
+        didSet {
+            applyStyling()
+        }
+    }
+    
+    var valueFont: UIFont = UIFont.preferredFont(forTextStyle: .body).bold() {
+        didSet {
+            applyStyling()
+        }
     }
 }
 
@@ -40,9 +59,8 @@ final class ContraAccountView: UIView {
     private func setup() {
         setupNib()
         
-        // Set up after view hierarchy is load from nib
-        
-        // TODO: Padding in stack view
+        accountNumberView.captionLabel.text = NSLocalizedString("account.number.caption", comment: "Caption on account number field")
+        accountNameView.captionLabel.text = NSLocalizedString("account.name.caption", comment: "Caption on account name field")
+        bankCodeView.captionLabel.text = NSLocalizedString("account.bankCode.caption", comment: "Caption on account bank code field")
     }
-
 }

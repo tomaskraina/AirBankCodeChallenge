@@ -20,7 +20,11 @@ class TransactionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        // TODO: Styling
+        amountLabel.font = .transactionAmount
+        directionLabel.font = .transactionDirection
+        amountLabel.textColor = Asset.darkGrayText.color
+        directionLabel.textColor = Asset.lightGrayText.color
+        
         accessoryType = .disclosureIndicator
     }
     
