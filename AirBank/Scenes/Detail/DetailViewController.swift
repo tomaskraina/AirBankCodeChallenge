@@ -64,6 +64,16 @@ class DetailViewController: UIViewController {
             
             self?.configure(state: state)
         }
+        
+        viewModel?.onError = { [weak self] error in
+            guard let self = self else { return }
+            guard self.view.window != nil else { return }
+            
+            let alert = UIAlertController.makeAlert(error: error, retryHandler: {
+                self.viewModel?.reloadTransactionDetails()
+            })
+            self.present(alert, animated: true)
+        }
     }
     
     enum State {

@@ -46,6 +46,8 @@
 		9C4B0E39217CD4B600A93DEE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E38217CD4B600A93DEE /* LoadingView.swift */; };
 		9C4B0E3B217CD4C000A93DEE /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0E3A217CD4C000A93DEE /* LoadingView.xib */; };
 		9C4B0E3D217CDAD200A93DEE /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0E3C217CDAD200A93DEE /* DetailViewModel.swift */; };
+		9C9A34D8217DA7F3006D887C /* UIAlertController+makeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34D7217DA7F3006D887C /* UIAlertController+makeAlert.swift */; };
+		9C9A34DA217DAE1C006D887C /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34D9217DAE1C006D887C /* NetworkingError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,8 @@
 		9C4B0E38217CD4B600A93DEE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		9C4B0E3A217CD4C000A93DEE /* LoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		9C4B0E3C217CDAD200A93DEE /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		9C9A34D7217DA7F3006D887C /* UIAlertController+makeAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+makeAlert.swift"; sourceTree = "<group>"; };
+		9C9A34D9217DAE1C006D887C /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 		9C4B0DB22179E54F00A93DEE /* AirBank */ = {
 			isa = PBXGroup;
 			children = (
+				9C9A34D7217DA7F3006D887C /* UIAlertController+makeAlert.swift */,
 				9C4B0E1E217C8C6400A93DEE /* Generated Code */,
 				9C4B0DB32179E54F00A93DEE /* AppDelegate.swift */,
 				9C4B0E23217C8C9B00A93DEE /* Flow Coordinators */,
@@ -183,6 +188,7 @@
 			children = (
 				9C4B0DD7217B73ED00A93DEE /* AirBankEndpoint.swift */,
 				9C4B0DE1217B802200A93DEE /* Networking.swift */,
+				9C9A34D9217DAE1C006D887C /* NetworkingError.swift */,
 				9C4B0DF3217BAAB500A93DEE /* Typealiases.swift */,
 				9C4B0DEB217BA8C500A93DEE /* Responses */,
 			);
@@ -426,6 +432,7 @@
 				9C4B0E2C217C9F1900A93DEE /* UIView+nibLoading.swift in Sources */,
 				9C4B0DF4217BAAB500A93DEE /* Typealiases.swift in Sources */,
 				9C4B0E39217CD4B600A93DEE /* LoadingView.swift in Sources */,
+				9C9A34DA217DAE1C006D887C /* NetworkingError.swift in Sources */,
 				9C4B0DB62179E54F00A93DEE /* DetailViewController.swift in Sources */,
 				9C4B0E18217C62DF00A93DEE /* ListViewController.swift in Sources */,
 				9C4B0DD8217B73ED00A93DEE /* AirBankEndpoint.swift in Sources */,
@@ -435,6 +442,7 @@
 				9C4B0DE2217B802200A93DEE /* Networking.swift in Sources */,
 				9C4B0E3D217CDAD200A93DEE /* DetailViewModel.swift in Sources */,
 				9C4B0E30217CA26E00A93DEE /* ListViewModel.swift in Sources */,
+				9C9A34D8217DA7F3006D887C /* UIAlertController+makeAlert.swift in Sources */,
 				9C4B0E21217C8C6400A93DEE /* Storyboard Scenes.swift in Sources */,
 				9C4B0DEA217BA8BF00A93DEE /* TransactionListResponse.swift in Sources */,
 				9C4B0E25217C902000A93DEE /* Assets.swift in Sources */,

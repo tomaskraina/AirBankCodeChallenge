@@ -9,21 +9,14 @@
 import Alamofire
 import CodableAlamofire
 
+// MARK: - Protocols
+
 protocol NetworkingProvider {
     @discardableResult
     func request<T: Codable>(endpoint: Endpoint, completion: @escaping (Result<T>) -> Void) -> DataRequest
 }
 
-enum NetworkingError: LocalizedError {
-    case network(Error, response: HTTPURLResponse?)
-    
-    var errorDescription: String? {
-        switch self {
-        case .network(let error, _):
-            return error.localizedDescription
-        }
-    }
-}
+// MARK: - Networking
 
 class Networking: NetworkingProvider {
     
@@ -46,7 +39,8 @@ class Networking: NetworkingProvider {
                 completion(.success(value))
                 
             case .failure(let error):
-                completion(.failure(NetworkingError.network(error, response: dataResponse.response)))
+                let networkingError = NetworkingError.init(error: error, httpUrlResponse: dataResponse.response)
+                completion(.failure(networkingError))
             }
         }
     

@@ -53,15 +53,22 @@ class DetailViewModel {
         }
     }
     
+    var onError: ((Error) -> Void)?
+    
     func reloadTransactionDetails() {
         isLoadingTransactionDetails = true
         
         apiClient.requestTransactionDetails(id: transaction.id) { [weak self] (result) in
             guard let self = self else { return }
-            self.isLoadingTransactionDetails = false
-            self.contraAccountInfo = result.value?.contraAccount
             
-            // TODO: Error handling
+            switch result {
+            case .success(let value):
+                self.contraAccountInfo = value.contraAccount
+            case .failure(let error):
+                self.onError?(error)
+            }
+            
+            self.isLoadingTransactionDetails = false
         }
     }
 }

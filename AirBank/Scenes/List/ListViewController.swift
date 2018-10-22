@@ -60,7 +60,13 @@ class ListViewController: UITableViewController {
         }
         
         viewModel?.onError = { [weak self] error in
-            // TODO: Show error
+            guard let self = self else { return }
+            guard self.view.window != nil else { return }
+            
+            let alert = UIAlertController.makeAlert(error: error, retryHandler: {
+                self.viewModel?.reload()
+            })
+            self.present(alert, animated: true)
         }
     }
 
