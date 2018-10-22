@@ -9,7 +9,17 @@
 import Foundation
 import class UIKit.UIImage
 
-class DetailViewModel {
+protocol DetailViewModelling {
+    var isLoadingTransactionDetails: Bool { get }
+    var amountFormatted: String? { get }
+    var directionString: String? { get }
+    var directionImage: UIImage? { get }
+    var contraAccountInfo: ContraAccount? { get }
+}
+
+class DetailViewModel: DetailViewModelling {
+    
+    typealias Dependencies = HasApiClient & HasCurrencyFormatter
     
     enum State {
         case empty
@@ -21,9 +31,12 @@ class DetailViewModel {
     
     let apiClient: ApiClient
     
-    init(transaction: Transaction, apiClient: ApiClient) {
+    let currencyFormatter: NumberFormatter
+
+    init(transaction: Transaction, dependencies: Dependencies) {
         self.transaction = transaction
-        self.apiClient = apiClient
+        self.apiClient = dependencies.apiClient
+        self.currencyFormatter = dependencies.currencyFormatter
     }
     
     var isLoadingTransactionDetails: Bool = false {
@@ -40,8 +53,7 @@ class DetailViewModel {
     }
     
     var amountFormatted: String? {
-        // TODO: CurrencyFormatter
-        return String(transaction.amountInAccountCurrency)
+        return currencyFormatter.string(from: NSNumber(value: transaction.amountInAccountCurrency))
     }
     
     var directionString: String? {

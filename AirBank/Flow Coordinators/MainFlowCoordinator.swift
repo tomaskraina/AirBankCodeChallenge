@@ -10,22 +10,24 @@ import UIKit
 
 class MainFlowCoordinator {
     
+    typealias Dependencies = HasApiClient & HasCurrencyFormatter
+    
     let window: UIWindow
+    
+    let dependencies: Dependencies
     
     var navigationController: UINavigationController?
     
-    init(window: UIWindow) {
+    init(window: UIWindow, dependencies: Dependencies) {
         self.window = window
+        self.dependencies = dependencies
     }
     
     func loadRootViewController() {
 
         let viewController = StoryboardScene.List.initialScene.instantiate()
         
-        // TODO: dependency injection & config
-        
-        let apiClient = ApiClient(networking: Networking.shared)
-        let viewModel = ListViewModel(apiClient: apiClient)
+        let viewModel = ListViewModel(dependencies: dependencies)
         viewController.viewModel = viewModel
         viewController.delegate = self
         
@@ -37,11 +39,7 @@ class MainFlowCoordinator {
     func showDetail(transaction: Transaction) {
         
         let viewController = StoryboardScene.Detail.initialScene.instantiate()
-        
-        // TODO: dependency injection & config
-        
-        let apiClient = ApiClient(networking: Networking.shared)
-        let viewModel = DetailViewModel(transaction: transaction, apiClient: apiClient)
+        let viewModel = DetailViewModel(transaction: transaction, dependencies: dependencies)
         viewController.viewModel = viewModel
 
         navigationController?.pushViewController(viewController, animated: true)

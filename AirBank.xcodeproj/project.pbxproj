@@ -50,6 +50,8 @@
 		9C9A34DA217DAE1C006D887C /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34D9217DAE1C006D887C /* NetworkingError.swift */; };
 		9C9A34DC217DBC3C006D887C /* UIFont+withTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34DB217DBC3C006D887C /* UIFont+withTraits.swift */; };
 		9C9A34DF217DC236006D887C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34DE217DC236006D887C /* Fonts.swift */; };
+		9C9A34E1217DC496006D887C /* CurrencyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34E0217DC496006D887C /* CurrencyCode.swift */; };
+		9C9A34E3217DCA18006D887C /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34E2217DCA18006D887C /* Dependencies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		9C9A34D9217DAE1C006D887C /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		9C9A34DB217DBC3C006D887C /* UIFont+withTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+withTraits.swift"; sourceTree = "<group>"; };
 		9C9A34DE217DC236006D887C /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		9C9A34E0217DC496006D887C /* CurrencyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCode.swift; sourceTree = "<group>"; };
+		9C9A34E2217DCA18006D887C /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 				9C9A34DD217DBC42006D887C /* Extensions */,
 				9C4B0E23217C8C9B00A93DEE /* Flow Coordinators */,
 				9C4B0E2A217C9A9800A93DEE /* Views */,
+				9C9A34E4217DCA21006D887C /* Protocols */,
 				9C4B0E14217C613D00A93DEE /* Scenes */,
 				9C4B0DBA2179E55000A93DEE /* Assets.xcassets */,
 				9C4B0DBC2179E55000A93DEE /* LaunchScreen.storyboard */,
@@ -222,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				9C4B0DEC217BA8F300A93DEE /* Transaction.swift */,
+				9C9A34E0217DC496006D887C /* CurrencyCode.swift */,
 				9C4B0DEF217BA92A00A93DEE /* TransactionDirection.swift */,
 				9C4B0DF1217BA94300A93DEE /* Identifier.swift */,
 				9C4B0E12217C5E7C00A93DEE /* ApiClient.swift */,
@@ -307,6 +313,14 @@
 				9C9A34DB217DBC3C006D887C /* UIFont+withTraits.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C9A34E4217DCA21006D887C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9C9A34E2217DCA18006D887C /* Dependencies.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4B0E13217C5E7C00A93DEE /* ApiClient.swift in Sources */,
+				9C9A34E3217DCA18006D887C /* Dependencies.swift in Sources */,
 				9C4B0E2C217C9F1900A93DEE /* UIView+nibLoading.swift in Sources */,
 				9C4B0DF4217BAAB500A93DEE /* Typealiases.swift in Sources */,
 				9C4B0E39217CD4B600A93DEE /* LoadingView.swift in Sources */,
@@ -457,6 +472,7 @@
 				9C4B0E3D217CDAD200A93DEE /* DetailViewModel.swift in Sources */,
 				9C4B0E30217CA26E00A93DEE /* ListViewModel.swift in Sources */,
 				9C9A34D8217DA7F3006D887C /* UIAlertController+makeAlert.swift in Sources */,
+				9C9A34E1217DC496006D887C /* CurrencyCode.swift in Sources */,
 				9C4B0E21217C8C6400A93DEE /* Storyboard Scenes.swift in Sources */,
 				9C4B0DEA217BA8BF00A93DEE /* TransactionListResponse.swift in Sources */,
 				9C4B0E25217C902000A93DEE /* Assets.swift in Sources */,

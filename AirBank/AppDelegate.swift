@@ -22,7 +22,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             fatalError("AppDelegate is missing UIWindow")
         }
         
-        let flowCoordinator = MainFlowCoordinator(window: window)
+        struct AppDependencies: MainFlowCoordinator.Dependencies {
+            
+            let accountCurrencyCode: CurrencyCode
+            
+            var apiClient: ApiClient {
+                return ApiClient(networking: Networking.shared)
+            }
+            
+            var currencyFormatter: NumberFormatter {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .currency
+                formatter.currencyCode = accountCurrencyCode.rawValue
+                return formatter
+            }
+        }
+        
+        let appDependencies = AppDependencies(accountCurrencyCode: CurrencyCode(rawValue: "CZK"))
+        let flowCoordinator = MainFlowCoordinator(window: window, dependencies: appDependencies)
         flowCoordinator.loadRootViewController()
         mainFlowCoordinator = flowCoordinator
         

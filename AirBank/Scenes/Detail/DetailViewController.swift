@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         title = NSLocalizedString("title.detail", comment: "Title on the 'Detail' scene.")
-        separatorView.backgroundColor = Asset.darkGrayText.color
+        separatorView.backgroundColor = Asset.lightGrayText.color
         
         amountLabel.font = UIFont.transactionAmount
         directionLabel.font = .transactionDirection

@@ -24,10 +24,15 @@ protocol ListViewModelling: AnyObject {
 
 class ListViewModel: ListViewModelling {
     
+    typealias Dependencies = HasApiClient & HasCurrencyFormatter
+    
     let apiClient: ApiClient
     
-    init(apiClient: ApiClient) {
-        self.apiClient = apiClient
+    let currencyFormatter: NumberFormatter
+    
+    init(dependencies: Dependencies) {
+        self.apiClient = dependencies.apiClient
+        self.currencyFormatter = dependencies.currencyFormatter
     }
     
     private(set) var items: [Transaction] = [] {
@@ -65,8 +70,7 @@ class ListViewModel: ListViewModelling {
     
     func title(at index: Int) -> String? {
         let item = items[index]
-        // TODO: Currency formatter
-        return String(item.amountInAccountCurrency)
+        return currencyFormatter.string(from: NSNumber(value: item.amountInAccountCurrency))
     }
     
     func subtitle(at index: Int) -> String? {
