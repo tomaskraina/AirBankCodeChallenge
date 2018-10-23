@@ -8,6 +8,8 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+import RxDataSources
 
 protocol ListViewControllerDelegate: AnyObject {
     func list(viewController: ListViewController, didSelect item: Transaction)
@@ -57,13 +59,30 @@ class ListViewController: UITableViewController, LoadingPresentable {
     
     // MARK: - Helpers
     
+    private var dataSource: RxTableViewSectionedReloadDataSource<SectionModel<Int, Transaction>> {
+        return RxTableViewSectionedReloadDataSource<SectionModel<Int, Transaction>>(
+            configureCell: { [weak self] (dataSource, tableView, indexPath, item) in
+                let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.nibName(), for: indexPath)
+                
+                if let transactionCell = cell as? TransactionTableViewCell {
+                    transactionCell.directionImageView.image = self?.viewModel?.image(at: indexPath.row)
+                    transactionCell.amountLabel.text = self?.viewModel?.title(at: indexPath.row)
+                    transactionCell.directionLabel.text = self?.viewModel?.subtitle(at: indexPath.row)
+                }
+                
+                return cell
+        })
+    }
+    
     func setupBinding() {
         guard isViewLoaded else { return }
-        
-        viewModel?.items.asObservable().subscribe(onNext: { _ in
-            self.tableView.reloadData()
-        }).disposed(by: disposeBag)
-        
+
+        viewModel?.tableContents.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        tableView.rx.modelSelected(Transaction.self)
+            .subscribe(onNext: { [unowned self] in
+                self.delegate?.list(viewController: self, didSelect: $0) }
+            ).disposed(by: disposeBag)
+
         viewModel?.isLoading.asObservable().subscribe(onNext: { [weak self] loading in
             // TODO: move this logic to VM
             if loading && self?.viewModel?.numberOfItems() == 0 {
@@ -93,30 +112,7 @@ class ListViewController: UITableViewController, LoadingPresentable {
             for: .valueChanged)
         return refreshControl
     }
-    
-    // MARK: - Table view data source
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.numberOfItems() ?? 0
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.nibName(), for: indexPath)
-
-        // Configure the cell...
-        if let transactionCell = cell as? TransactionTableViewCell {
-            transactionCell.directionImageView.image = viewModel?.image(at: indexPath.row)
-            transactionCell.amountLabel.text = viewModel?.title(at: indexPath.row)
-            transactionCell.directionLabel.text = viewModel?.subtitle(at: indexPath.row)
-        }
-
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = viewModel?.items.value[indexPath.row] else { return }
-        delegate?.list(viewController: self, didSelect: item)
-    }
 }
 
 // MARK: - ListViewController: TransactionDirectionFilterViewDelegate

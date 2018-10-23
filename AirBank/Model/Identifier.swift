@@ -10,13 +10,14 @@ import Foundation
 
 // Inspired by: https://www.swiftbysundell.com/posts/type-safe-identifiers-in-swift
 
-protocol Identifiable {
-    associatedtype RawIdentifier: Codable = Int
+protocol Identifiable: Hashable {
+    associatedtype RawIdentifier: Codable & Hashable = Int
     
     var id: Identifier<Self> { get }
 }
 
-struct Identifier<Value: Identifiable> {
+struct Identifier<Value: Identifiable>: Hashable {
+    
     let rawValue: Value.RawIdentifier
     
     init(rawValue: Value.RawIdentifier) {

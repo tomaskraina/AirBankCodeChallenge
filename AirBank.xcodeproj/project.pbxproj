@@ -60,6 +60,9 @@
 		9C9A34F4217DF719006D887C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A34F3217DF718006D887C /* Strings.swift */; };
 		9C9A3505217E534F006D887C /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9A3503217E534F006D887C /* RxSwift.framework */; };
 		9C9A3506217E534F006D887C /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9A3504217E534F006D887C /* RxCocoa.framework */; };
+		9C9A3509217F1C18006D887C /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9A3507217F1C18006D887C /* RxDataSources.framework */; };
+		9C9A350A217F1C18006D887C /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9A3508217F1C18006D887C /* Differentiator.framework */; };
+		9C9A350C217F1DEE006D887C /* Transaction+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A350B217F1DEE006D887C /* Transaction+Rx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +134,9 @@
 		9C9A34F3217DF718006D887C /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		9C9A3503217E534F006D887C /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		9C9A3504217E534F006D887C /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		9C9A3507217F1C18006D887C /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
+		9C9A3508217F1C18006D887C /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
+		9C9A350B217F1DEE006D887C /* Transaction+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+Rx.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C9A3509217F1C18006D887C /* RxDataSources.framework in Frameworks */,
+				9C9A350A217F1C18006D887C /* Differentiator.framework in Frameworks */,
 				9C9A3505217E534F006D887C /* RxSwift.framework in Frameworks */,
 				9C9A3506217E534F006D887C /* RxCocoa.framework in Frameworks */,
 				9C4B0DE8217B8F9300A93DEE /* CodableAlamofire.framework in Frameworks */,
@@ -226,6 +234,8 @@
 		9C4B0DDE217B7A4C00A93DEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C9A3508217F1C18006D887C /* Differentiator.framework */,
+				9C9A3507217F1C18006D887C /* RxDataSources.framework */,
 				9C9A3504217E534F006D887C /* RxCocoa.framework */,
 				9C9A3503217E534F006D887C /* RxSwift.framework */,
 				9C4B0DE7217B8F9300A93DEE /* CodableAlamofire.framework */,
@@ -334,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				9C9A34DB217DBC3C006D887C /* UIFont+withTraits.swift */,
+				9C9A350B217F1DEE006D887C /* Transaction+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -482,6 +493,8 @@
 				"$(SRCROOT)/Carthage/Build/iOS/CodableAlamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 			);
 			name = Carthage;
 			outputFileListPaths = (
@@ -491,6 +504,8 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/CodableAlamofire.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDataSources.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Differentiator.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -526,6 +541,7 @@
 				9C4B0DEA217BA8BF00A93DEE /* TransactionListResponse.swift in Sources */,
 				9C4B0E25217C902000A93DEE /* Assets.swift in Sources */,
 				9C4B0DED217BA8F300A93DEE /* Transaction.swift in Sources */,
+				9C9A350C217F1DEE006D887C /* Transaction+Rx.swift in Sources */,
 				9C9A34DC217DBC3C006D887C /* UIFont+withTraits.swift in Sources */,
 				9C4B0E28217C9A9300A93DEE /* TransactionTableViewCell.swift in Sources */,
 				9C4B0E37217CD21800A93DEE /* ContraAccountView.swift in Sources */,

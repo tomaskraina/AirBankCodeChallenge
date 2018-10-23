@@ -9,6 +9,7 @@
 import Foundation
 import class UIKit.UIImage
 import RxSwift
+import RxDataSources
 
 enum ListFilterSetting {
     case all
@@ -29,6 +30,8 @@ protocol ListViewModelling: AnyObject {
     func image(at index: Int) -> UIImage?
     func title(at index: Int) -> String?
     func subtitle(at index: Int) -> String?
+    
+    var tableContents: Observable<[SectionModel<Int, Transaction>]> { get }
 }
 
 class ListViewModel: ListViewModelling {
@@ -101,6 +104,12 @@ class ListViewModel: ListViewModelling {
     func subtitle(at index: Int) -> String? {
         let item = items.value[index]
         return item.direction.localizedString
+    }
+    
+    var tableContents: Observable<[SectionModel<Int, Transaction>]> {
+        return items.asObservable().map() {
+            [SectionModel(model: 0, items: $0)]
+        }
     }
     
     // MARK: - Privates

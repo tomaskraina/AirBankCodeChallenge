@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct Transaction: Codable, Identifiable {
-    
+struct Transaction: Codable, Identifiable, Equatable, Hashable {    
     let id: Identifier<Transaction>
     let amountInAccountCurrency: Int
     let direction: TransactionDirection

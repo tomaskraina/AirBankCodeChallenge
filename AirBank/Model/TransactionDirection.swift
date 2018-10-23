@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum TransactionDirection: String, Codable {
+enum TransactionDirection: String, Codable, Hashable {
     case incoming = "INCOMING"
     case outgoing = "OUTGOING"
 }
