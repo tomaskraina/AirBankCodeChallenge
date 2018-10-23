@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class DetailViewController: UIViewController {
 
@@ -21,7 +23,7 @@ class DetailViewController: UIViewController {
     
     // MARK: - Configuration
     
-    var viewModel: DetailViewModel? {
+    var viewModel: DetailViewModelling? {
         didSet {
             setupBinding()
             viewModel?.reloadTransactionDetails()
@@ -46,45 +48,54 @@ class DetailViewController: UIViewController {
 
     // MARK: - Helpers
 
+    private let disposeBag = DisposeBag()
+    
     private func setupBinding() {
         guard isViewLoaded else { return }
         
-        directionLabel.text = viewModel?.directionString
-        directionImageView.image = viewModel?.directionImage
-        amountLabel.text = viewModel?.amountFormatted
+        viewModel?.directionString.asObservable()
+            .bind(to: directionLabel.rx.text)
+            .disposed(by: disposeBag)
         
-        viewModel?.onContraAccountUpdate = { [weak self] in
-            self?.contraAccountView.accountNameView.valueLabel.text = self?.viewModel?.contraAccountInfo?.accountName
-            self?.contraAccountView.accountNumberView.valueLabel.text = self?.viewModel?.contraAccountInfo?.accountNumber
-            self?.contraAccountView.bankCodeView.valueLabel.text = self?.viewModel?.contraAccountInfo?.bankCode
-        }
+        viewModel?.directionImage.asObservable()
+            .bind(to: directionImageView.rx.image)
+            .disposed(by: disposeBag)
         
-        viewModel?.onStateUpdate = { [weak self] state in
-            self?.configure(state: state)
-        }
+        viewModel?.amountFormatted.asObservable()
+            .bind(to: amountLabel.rx.text)
+            .disposed(by: disposeBag)
         
-        viewModel?.onError = { [weak self] error in
+        viewModel?.contraAccountName.asObservable()
+            .bind(to: contraAccountView.accountNameView.valueLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel?.contraAccountNumber.asObservable()
+            .bind(to: contraAccountView.accountNumberView.valueLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel?.contraBankCode.asObservable()
+            .bind(to: contraAccountView.bankCodeView.valueLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel?.isLoadingTransactionDetails.asObservable()
+            .map{ !$0 }
+            .bind(to: loadingView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        viewModel?.isContraAccountShown.asObservable()
+            .map{ !$0 }
+            .bind(to: contraAccountView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+
+        viewModel?.error.asObservable().subscribe(onNext: { [weak self] error in
             guard self?.view.window != nil else { return }
             
             let alert = UIAlertController.makeAlert(error: error, retryHandler: {
                 self?.viewModel?.reloadTransactionDetails()
             })
             self?.present(alert, animated: true)
-        }
-    }
-    
-    private func configure(state: DetailViewModel.State) {
-        switch state {
-        case .empty:
-            loadingView.isHidden = true
-            contraAccountView.isHidden = true
-        case .loading:
-            loadingView.isHidden = false
-            contraAccountView.isHidden = true
-        case .loaded:
-            loadingView.isHidden = true
-            contraAccountView.isHidden = false
-        }
+        }).disposed(by: disposeBag)
     }
 }
 

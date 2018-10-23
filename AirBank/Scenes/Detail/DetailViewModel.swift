@@ -8,13 +8,22 @@
 
 import Foundation
 import class UIKit.UIImage
+import RxSwift
 
 protocol DetailViewModelling {
-    var isLoadingTransactionDetails: Bool { get }
-    var amountFormatted: String? { get }
-    var directionString: String? { get }
-    var directionImage: UIImage? { get }
-    var contraAccountInfo: ContraAccount? { get }
+    var isLoadingTransactionDetails: Variable<Bool> { get }
+    var amountFormatted: Variable<String> { get }
+    var directionString: Variable<String> { get }
+    var directionImage: Variable<UIImage> { get }
+    
+    var error: PublishSubject<Error> { get }
+
+    var isContraAccountShown: Variable<Bool> { get }
+    var contraAccountNumber: Variable<String> { get }
+    var contraAccountName: Variable<String> { get }
+    var contraBankCode: Variable<String> { get }
+    
+    func reloadTransactionDetails()
 }
 
 class DetailViewModel: DetailViewModelling {
@@ -37,47 +46,40 @@ class DetailViewModel: DetailViewModelling {
         self.transaction = transaction
         self.apiClient = dependencies.apiClient
         self.currencyFormatter = dependencies.currencyFormatter
+        
+        let amountFormatted = currencyFormatter.string(from: NSNumber(value: transaction.amountInAccountCurrency))
+        self.amountFormatted = Variable(amountFormatted ?? "")
+        self.directionString = Variable(transaction.direction.localizedString)
+        self.directionImage = Variable(transaction.direction.image)
     }
     
-    var isLoadingTransactionDetails: Bool = false {
+    let isLoadingTransactionDetails = Variable<Bool>(false)
+
+    let amountFormatted: Variable<String>
+
+    let directionString: Variable<String>
+    
+    let directionImage: Variable<UIImage>
+    
+    let isContraAccountShown = Variable<Bool>(false)
+    
+    let contraAccountNumber = Variable<String>("")
+    
+    let contraAccountName = Variable<String>("")
+    
+    let contraBankCode = Variable<String>("")
+    
+    private var contraAccountInfo: ContraAccount? {
         didSet {
+            contraAccountName.value = contraAccountInfo?.accountName ?? ""
+            contraAccountNumber.value = contraAccountInfo?.accountNumber ?? ""
+            contraBankCode.value = contraAccountInfo?.bankCode ?? ""
+            isContraAccountShown.value = contraAccountInfo != nil
             updateState()
-            onLoadingTransactionDetailsUpdate?()
         }
     }
     
-    var onLoadingTransactionDetailsUpdate: (() -> Void)? {
-        didSet {
-            onLoadingTransactionDetailsUpdate?()
-        }
-    }
-    
-    var amountFormatted: String? {
-        return currencyFormatter.string(from: NSNumber(value: transaction.amountInAccountCurrency))
-    }
-    
-    var directionString: String? {
-        return transaction.direction.localizedString
-    }
-    
-    var directionImage: UIImage? {
-        return transaction.direction.image
-    }
-    
-    var contraAccountInfo: ContraAccount? {
-        didSet {
-            updateState()
-            onContraAccountUpdate?()
-        }
-    }
-    
-    var onContraAccountUpdate: (() -> Void)? {
-        didSet {
-            onContraAccountUpdate?()
-        }
-    }
-    
-    var onError: ((Error) -> Void)?
+    let error = PublishSubject<Error>()
     
     private(set) var state: State = .empty {
         didSet {
@@ -88,7 +90,7 @@ class DetailViewModel: DetailViewModelling {
     var onStateUpdate: ((State) -> Void)?
     
     func reloadTransactionDetails() {
-        isLoadingTransactionDetails = true
+        isLoadingTransactionDetails.value = true
         
         apiClient.requestTransactionDetails(id: transaction.id) { [weak self] (result) in
             guard let self = self else { return }
@@ -97,10 +99,10 @@ class DetailViewModel: DetailViewModelling {
             case .success(let value):
                 self.contraAccountInfo = value.contraAccount
             case .failure(let error):
-                self.onError?(error)
+                self.error.onNext(error)
             }
             
-            self.isLoadingTransactionDetails = false
+            self.isLoadingTransactionDetails.value = false
         }
     }
     
@@ -109,7 +111,7 @@ class DetailViewModel: DetailViewModelling {
     private func updateState() {
         if contraAccountInfo != nil {
             state = .loaded
-        } else if isLoadingTransactionDetails == true {
+        } else if isLoadingTransactionDetails.value == true {
             state = .loading
         } else {
             state = .empty
