@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol ListViewControllerDelegate: AnyObject {
     func list(viewController: ListViewController, didSelect item: Transaction)
@@ -14,6 +15,8 @@ protocol ListViewControllerDelegate: AnyObject {
 
 class ListViewController: UITableViewController, LoadingPresentable {
 
+    let disposeBag = DisposeBag()
+    
     // MARK: - Configuration
     
     var viewModel: ListViewModelling? {
@@ -57,27 +60,29 @@ class ListViewController: UITableViewController, LoadingPresentable {
     func setupBinding() {
         guard isViewLoaded else { return }
         
-        viewModel?.onLoadingUpdate = { [weak self] loading in
+        viewModel?.items.asObservable().subscribe(onNext: { _ in
+            self.tableView.reloadData()
+        }).disposed(by: disposeBag)
+        
+        viewModel?.isLoading.asObservable().subscribe(onNext: { [weak self] loading in
+            // TODO: move this logic to VM
             if loading && self?.viewModel?.numberOfItems() == 0 {
                 self?.showLoading()
             } else {
                 self?.hideLoading()
             }
-        }
+        }).disposed(by: disposeBag)
         
-        viewModel?.onItemsUpdate = { [weak self] _ in
-            self?.tableView.reloadData()
-        }
-        
-        viewModel?.onError = { [weak self] error in
+        viewModel?.error.asObservable().subscribe(onNext: { [weak self] error in
             guard let self = self else { return }
+            // TODO: move this logic to VM
             guard self.view.window != nil else { return }
             
             let alert = UIAlertController.makeAlert(error: error, retryHandler: {
                 self.viewModel?.reload()
             })
             self.present(alert, animated: true)
-        }
+        }).disposed(by: disposeBag)
     }
 
     func makeRefreshControl() -> UIRefreshControl {
@@ -109,7 +114,7 @@ class ListViewController: UITableViewController, LoadingPresentable {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let item = viewModel?.items[indexPath.row] else { return }
+        guard let item = viewModel?.items.value[indexPath.row] else { return }
         delegate?.list(viewController: self, didSelect: item)
     }
 }
@@ -127,6 +132,6 @@ extension ListViewController: TransactionDirectionFilterViewDelegate {
             filterSetting = .outgoingTransactions
         }
         
-        viewModel?.filterSetting = filterSetting
+        viewModel?.updateFilter(setting: filterSetting)
     }
 }

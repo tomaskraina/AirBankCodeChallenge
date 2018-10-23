@@ -1,4 +1,4 @@
 github "Alamofire/Alamofire"
 github "Otbivnoe/CodableAlamofire"
-
-#github "ReactiveX/RxSwift" ~> 4.0
+github "ReactiveX/RxSwift" ~> 4.0
+github "RxSwiftCommunity/RxDataSources"

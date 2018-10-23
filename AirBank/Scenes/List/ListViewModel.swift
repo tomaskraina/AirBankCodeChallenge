@@ -8,6 +8,7 @@
 
 import Foundation
 import class UIKit.UIImage
+import RxSwift
 
 enum ListFilterSetting {
     case all
@@ -16,14 +17,13 @@ enum ListFilterSetting {
 }
 
 protocol ListViewModelling: AnyObject {
-    var filterSetting: ListFilterSetting { get set }
-    var items: [Transaction] { get }
-    var onItemsUpdate: (([Transaction]) -> Void)? { get set }
-    var onError: ((Error) -> Void)? { get set }
-    var onLoadingUpdate: ((Bool) -> Void)? { get set }
+    func updateFilter(setting: ListFilterSetting)
+    var filterSetting: Variable<ListFilterSetting> { get }
+    var items: Variable<[Transaction]> { get }
+    var error: PublishSubject<Error> { get }
+    var isLoading: Variable<Bool> { get }
     
     func reload()
-    var isLoading: Bool { get }
     
     func numberOfItems() -> Int
     func image(at index: Int) -> UIImage?
@@ -39,91 +39,91 @@ class ListViewModel: ListViewModelling {
     
     let currencyFormatter: NumberFormatter
     
+    let filterSetting = Variable<ListFilterSetting>(.all)
+    
+    let error = PublishSubject<Error>()
+    
+    let isLoading = Variable<Bool>(false)
+    
+    let items = Variable<[Transaction]>([])
+    
     init(dependencies: Dependencies) {
         self.apiClient = dependencies.apiClient
         self.currencyFormatter = dependencies.currencyFormatter
+        
+        unfilteredItems.asObservable().map {
+            filter(items: $0, setting: self.filterSetting.value)
+            }.subscribe(onNext: {
+                self.items.value = $0
+            }).disposed(by: disposeBag)
+        
+        filterSetting.asObservable().map {
+            filter(items: self.unfilteredItems.value, setting: $0) }
+            .subscribe(onNext: {
+                self.items.value = $0})
+            .disposed(by: disposeBag)
     }
     
-    var filterSetting: ListFilterSetting = .all {
-        didSet {
-            onItemsUpdate?(items)
-        }
-    }
-    
-    var onItemsUpdate: (([Transaction]) -> Void)? {
-        didSet {
-            onItemsUpdate?(items)
-        }
-    }
-    
-    var onError: ((Error) -> Void)?
-    
-    private(set) var isLoading: Bool = false {
-        didSet {
-            onLoadingUpdate?(isLoading)
-        }
-    }
-    
-    var onLoadingUpdate: ((Bool) -> Void)? {
-        didSet {
-            onLoadingUpdate?(isLoading)
-        }
+    func updateFilter(setting: ListFilterSetting) {
+        filterSetting.value = setting
     }
     
     func reload() {
-        isLoading = true
+        isLoading.value = true
         apiClient.requestTransactionList { [weak self] (result) in
             guard let self = self else { return }
-            self.isLoading = false
+            self.isLoading.value = false
             
             switch result {
             case .success(let value):
-                self.unfilteredItems = value.items
+                self.unfilteredItems.value = value.items
                 
             case .failure(let error):
-                self.onError?(error)
+                self.error.onNext(error)
             }
         }
     }
     
-    var items: [Transaction] {
-        switch filterSetting {
-        case .all:
-            return unfilteredItems
-        case .incomingTransactions:
-            return unfilteredItems.filter { $0.direction == .incoming }
-        case .outgoingTransactions:
-            return unfilteredItems.filter { $0.direction == .outgoing }
-        }
-    }
-    
     func numberOfItems() -> Int {
-        return items.count
+        return items.value.count
     }
     
     func image(at index: Int) -> UIImage? {
-        let item = items[index]
+        let item = items.value[index]
         return item.direction.image
     }
     
     func title(at index: Int) -> String? {
-        let item = items[index]
+        let item = items.value[index]
         return currencyFormatter.string(from: NSNumber(value: item.amountInAccountCurrency))
     }
     
     func subtitle(at index: Int) -> String? {
-        let item = items[index]
+        let item = items.value[index]
         return item.direction.localizedString
     }
     
     // MARK: - Privates
     
-    private var unfilteredItems: [Transaction] = [] {
-        didSet {
-            onItemsUpdate?(items)
-        }
+    private let disposeBag = DisposeBag()
+    
+    private let unfilteredItems = Variable<[Transaction]>([])
+}
+
+// MARK: - functions
+
+// TODO: lazy indexed sequence?
+private func filter(items: [Transaction], setting: ListFilterSetting) -> [Transaction] {
+    switch setting {
+    case .all:
+        return items
+    case .incomingTransactions:
+        return items.filter { $0.direction == .incoming }
+    case .outgoingTransactions:
+        return items.filter { $0.direction == .outgoing }
     }
 }
+
 
 // MARK: - TransactionDirection+image
 extension TransactionDirection {
