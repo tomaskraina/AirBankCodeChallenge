@@ -69,25 +69,7 @@ class DetailViewModel: DetailViewModelling {
     
     let contraBankCode = Variable<String>("")
     
-    private var contraAccountInfo: ContraAccount? {
-        didSet {
-            contraAccountName.value = contraAccountInfo?.accountName ?? ""
-            contraAccountNumber.value = contraAccountInfo?.accountNumber ?? ""
-            contraBankCode.value = contraAccountInfo?.bankCode ?? ""
-            isContraAccountShown.value = contraAccountInfo != nil
-            updateState()
-        }
-    }
-    
     let error = PublishSubject<Error>()
-    
-    private(set) var state: State = .empty {
-        didSet {
-            onStateUpdate?(state)
-        }
-    }
-    
-    var onStateUpdate: ((State) -> Void)?
     
     func reloadTransactionDetails() {
         isLoadingTransactionDetails.value = true
@@ -108,13 +90,12 @@ class DetailViewModel: DetailViewModelling {
     
     // MARK: - Helpers
 
-    private func updateState() {
-        if contraAccountInfo != nil {
-            state = .loaded
-        } else if isLoadingTransactionDetails.value == true {
-            state = .loading
-        } else {
-            state = .empty
+    private var contraAccountInfo: ContraAccount? {
+        didSet {
+            contraAccountName.value = contraAccountInfo?.accountName ?? ""
+            contraAccountNumber.value = contraAccountInfo?.accountNumber ?? ""
+            contraBankCode.value = contraAccountInfo?.bankCode ?? ""
+            isContraAccountShown.value = contraAccountInfo != nil
         }
     }
 }
