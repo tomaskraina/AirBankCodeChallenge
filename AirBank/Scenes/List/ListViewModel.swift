@@ -56,14 +56,14 @@ class ListViewModel: ListViewModelling {
         
         unfilteredItems.asObservable().map {
             filter(items: $0, setting: self.filterSetting.value)
-            }.subscribe(onNext: {
-                self.items.value = $0
+            }.subscribe(onNext: { [weak self] in
+                self?.items.value = $0
             }).disposed(by: disposeBag)
         
         filterSetting.asObservable().map {
             filter(items: self.unfilteredItems.value, setting: $0) }
-            .subscribe(onNext: {
-                self.items.value = $0})
+            .subscribe(onNext: { [weak self] in
+                self?.items.value = $0})
             .disposed(by: disposeBag)
     }
     
