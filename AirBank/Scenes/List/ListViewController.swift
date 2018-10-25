@@ -83,7 +83,7 @@ class ListViewController: UITableViewController, LoadingPresentable {
                 self.delegate?.list(viewController: self, didSelect: $0) }
             ).disposed(by: disposeBag)
 
-        viewModel?.outputs.isLoading.asObservable().subscribe(onNext: { [weak self] loading in
+        viewModel?.outputs.isLoadingSpinnerShown.asObservable().subscribe(onNext: { [weak self] loading in
             if loading {
                 self?.showLoading()
             } else {

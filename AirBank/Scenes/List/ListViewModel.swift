@@ -25,7 +25,8 @@ protocol ListViewModelInputs {
 protocol ListViewModelOutputs {
     var filterSetting: Variable<ListFilterSetting> { get }
     var error: PublishSubject<Error> { get }
-    var isLoading: Variable<Bool> { get }
+    
+    var isLoadingSpinnerShown: Observable<Bool> { get }
     
     func image(for item: Transaction) -> UIImage?
     func title(for item: Transaction) -> String?
@@ -51,7 +52,9 @@ class ListViewModel: ListViewModelling, ListViewModelInputs, ListViewModelOutput
     
     let error = PublishSubject<Error>()
     
-    let isLoading = Variable<Bool>(false)
+    private let isLoading = Variable<Bool>(false)
+    
+    var isLoadingSpinnerShown: Observable<Bool>
     
     let items: Observable<[Transaction]>
     
@@ -62,6 +65,10 @@ class ListViewModel: ListViewModelling, ListViewModelInputs, ListViewModelOutput
         items = Observable<[Transaction]>.combineLatest(unfilteredItems.asObservable(), filterSetting.asObservable()) { (items, setting) -> [Transaction] in
             filter(items: items, setting: setting)
         }
+        
+        isLoadingSpinnerShown = Observable<Bool>.combineLatest(isLoading.asObservable(), unfilteredItems.asObservable(), resultSelector: { (isLoading, items) -> Bool in
+            return isLoading && items.isEmpty
+        })
     }
     
     func updateFilter(setting: ListFilterSetting) {
