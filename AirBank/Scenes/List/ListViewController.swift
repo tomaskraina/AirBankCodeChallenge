@@ -65,9 +65,9 @@ class ListViewController: UITableViewController, LoadingPresentable {
                 let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.nibName(), for: indexPath)
                 
                 if let transactionCell = cell as? TransactionTableViewCell {
-                    transactionCell.directionImageView.image = self?.viewModel?.image(at: indexPath.row)
-                    transactionCell.amountLabel.text = self?.viewModel?.title(at: indexPath.row)
-                    transactionCell.directionLabel.text = self?.viewModel?.subtitle(at: indexPath.row)
+                    transactionCell.directionImageView.image = self?.viewModel?.image(for: item)
+                    transactionCell.amountLabel.text = self?.viewModel?.title(for: item)
+                    transactionCell.directionLabel.text = self?.viewModel?.subtitle(for: item)
                 }
                 
                 return cell
@@ -84,8 +84,7 @@ class ListViewController: UITableViewController, LoadingPresentable {
             ).disposed(by: disposeBag)
 
         viewModel?.isLoading.asObservable().subscribe(onNext: { [weak self] loading in
-            // TODO: move this logic to VM
-            if loading && self?.viewModel?.numberOfItems() == 0 {
+            if loading {
                 self?.showLoading()
             } else {
                 self?.hideLoading()

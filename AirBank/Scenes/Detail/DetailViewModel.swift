@@ -72,8 +72,10 @@ class DetailViewModel: DetailViewModelling {
     let error = PublishSubject<Error>()
     
     func reloadTransactionDetails() {
-        isLoadingTransactionDetails.value = true
+        // Don't fire multiple requests at once, either cancel previous or ignore the subsequent
+        guard isLoadingTransactionDetails.value == false else { return }
         
+        isLoadingTransactionDetails.value = true
         apiClient.requestTransactionDetails(id: transaction.id) { [weak self] (result) in
             guard let self = self else { return }
             

@@ -20,22 +20,20 @@ enum ListFilterSetting {
 protocol ListViewModelling: AnyObject {
     func updateFilter(setting: ListFilterSetting)
     var filterSetting: Variable<ListFilterSetting> { get }
-    var items: Variable<[Transaction]> { get }
     var error: PublishSubject<Error> { get }
     var isLoading: Variable<Bool> { get }
     
     func reload()
     
-    func numberOfItems() -> Int
-    func image(at index: Int) -> UIImage?
-    func title(at index: Int) -> String?
-    func subtitle(at index: Int) -> String?
+    func image(for item: Transaction) -> UIImage?
+    func title(for item: Transaction) -> String?
+    func subtitle(for item: Transaction) -> String?
     
     var tableContents: Observable<[SectionModel<Int, Transaction>]> { get }
 }
 
 class ListViewModel: ListViewModelling {
-    
+
     typealias Dependencies = HasApiClient & HasCurrencyFormatter
     
     let apiClient: ApiClient
@@ -48,23 +46,15 @@ class ListViewModel: ListViewModelling {
     
     let isLoading = Variable<Bool>(false)
     
-    let items = Variable<[Transaction]>([])
+    let items: Observable<[Transaction]>
     
     init(dependencies: Dependencies) {
         self.apiClient = dependencies.apiClient
         self.currencyFormatter = dependencies.currencyFormatter
         
-        unfilteredItems.asObservable().map {
-            filter(items: $0, setting: self.filterSetting.value)
-            }.subscribe(onNext: { [weak self] in
-                self?.items.value = $0
-            }).disposed(by: disposeBag)
-        
-        filterSetting.asObservable().map {
-            filter(items: self.unfilteredItems.value, setting: $0) }
-            .subscribe(onNext: { [weak self] in
-                self?.items.value = $0})
-            .disposed(by: disposeBag)
+        items = Observable<[Transaction]>.combineLatest(unfilteredItems.asObservable(), filterSetting.asObservable()) { (items, setting) -> [Transaction] in
+            filter(items: items, setting: setting)
+        }
     }
     
     func updateFilter(setting: ListFilterSetting) {
@@ -72,6 +62,9 @@ class ListViewModel: ListViewModelling {
     }
     
     func reload() {
+        // Don't fire multiple requests at once, either cancel previous or ignore the subsequent
+        guard isLoading.value == false else { return }
+        
         isLoading.value = true
         apiClient.requestTransactionList { [weak self] (result) in
             guard let self = self else { return }
@@ -87,27 +80,20 @@ class ListViewModel: ListViewModelling {
         }
     }
     
-    func numberOfItems() -> Int {
-        return items.value.count
-    }
-    
-    func image(at index: Int) -> UIImage? {
-        let item = items.value[index]
+    func image(for item: Transaction) -> UIImage? {
         return item.direction.image
     }
-    
-    func title(at index: Int) -> String? {
-        let item = items.value[index]
+        
+    func title(for item: Transaction) -> String? {
         return currencyFormatter.string(from: NSNumber(value: item.amountInAccountCurrency))
     }
     
-    func subtitle(at index: Int) -> String? {
-        let item = items.value[index]
+    func subtitle(for item: Transaction) -> String? {
         return item.direction.localizedString
     }
     
     var tableContents: Observable<[SectionModel<Int, Transaction>]> {
-        return items.asObservable().map() {
+        return items.map() {
             [SectionModel(model: 0, items: $0)]
         }
     }
@@ -121,7 +107,6 @@ class ListViewModel: ListViewModelling {
 
 // MARK: - functions
 
-// TODO: lazy indexed sequence?
 private func filter(items: [Transaction], setting: ListFilterSetting) -> [Transaction] {
     switch setting {
     case .all:
