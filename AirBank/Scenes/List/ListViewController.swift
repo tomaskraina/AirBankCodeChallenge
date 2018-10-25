@@ -24,7 +24,7 @@ class ListViewController: UITableViewController, LoadingPresentable {
     var viewModel: ListViewModelling? {
         didSet {
             setupBinding()
-            viewModel?.reload()
+            viewModel?.inputs.reload()
         }
     }
     
@@ -50,7 +50,7 @@ class ListViewController: UITableViewController, LoadingPresentable {
     // MARK: - IBAction
     
     @IBAction func pulledToRefresh(sender: UIRefreshControl) {
-        viewModel?.reload()
+        viewModel?.inputs.reload()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             sender.endRefreshing()
@@ -65,9 +65,9 @@ class ListViewController: UITableViewController, LoadingPresentable {
                 let cell = tableView.dequeueReusableCell(withIdentifier: TransactionTableViewCell.nibName(), for: indexPath)
                 
                 if let transactionCell = cell as? TransactionTableViewCell {
-                    transactionCell.directionImageView.image = self?.viewModel?.image(for: item)
-                    transactionCell.amountLabel.text = self?.viewModel?.title(for: item)
-                    transactionCell.directionLabel.text = self?.viewModel?.subtitle(for: item)
+                    transactionCell.directionImageView.image = self?.viewModel?.outputs.image(for: item)
+                    transactionCell.amountLabel.text = self?.viewModel?.outputs.title(for: item)
+                    transactionCell.directionLabel.text = self?.viewModel?.outputs.subtitle(for: item)
                 }
                 
                 return cell
@@ -77,13 +77,13 @@ class ListViewController: UITableViewController, LoadingPresentable {
     func setupBinding() {
         guard isViewLoaded else { return }
 
-        viewModel?.tableContents.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        viewModel?.outputs.tableContents.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         tableView.rx.modelSelected(Transaction.self)
             .subscribe(onNext: { [unowned self] in
                 self.delegate?.list(viewController: self, didSelect: $0) }
             ).disposed(by: disposeBag)
 
-        viewModel?.isLoading.asObservable().subscribe(onNext: { [weak self] loading in
+        viewModel?.outputs.isLoading.asObservable().subscribe(onNext: { [weak self] loading in
             if loading {
                 self?.showLoading()
             } else {
@@ -91,13 +91,13 @@ class ListViewController: UITableViewController, LoadingPresentable {
             }
         }).disposed(by: disposeBag)
         
-        viewModel?.error.asObservable().subscribe(onNext: { [weak self] error in
+        viewModel?.outputs.error.asObservable().subscribe(onNext: { [weak self] error in
             guard let self = self else { return }
             // TODO: move this logic to VM
             guard self.view.window != nil else { return }
             
             let alert = UIAlertController.makeAlert(error: error, retryHandler: {
-                self.viewModel?.reload()
+                self.viewModel?.inputs.reload()
             })
             self.present(alert, animated: true)
         }).disposed(by: disposeBag)
@@ -127,6 +127,6 @@ extension ListViewController: TransactionDirectionFilterViewDelegate {
             filterSetting = .outgoingTransactions
         }
         
-        viewModel?.updateFilter(setting: filterSetting)
+        viewModel?.inputs.updateFilter(setting: filterSetting)
     }
 }

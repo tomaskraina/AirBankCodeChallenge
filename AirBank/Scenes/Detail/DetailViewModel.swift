@@ -10,23 +10,30 @@ import Foundation
 import class UIKit.UIImage
 import RxSwift
 
-protocol DetailViewModelling {
+protocol DetailViewModelInputs {
+    func reloadTransactionDetails()
+}
+
+protocol DetailViewModelOutputs {
     var isLoadingTransactionDetails: Variable<Bool> { get }
     var amountFormatted: Variable<String> { get }
     var directionString: Variable<String> { get }
     var directionImage: Variable<UIImage> { get }
     
     var error: PublishSubject<Error> { get }
-
+    
     var isContraAccountShown: Variable<Bool> { get }
     var contraAccountNumber: Variable<String> { get }
     var contraAccountName: Variable<String> { get }
     var contraBankCode: Variable<String> { get }
-    
-    func reloadTransactionDetails()
 }
 
-class DetailViewModel: DetailViewModelling {
+protocol DetailViewModelling {
+    var inputs: DetailViewModelInputs { get }
+    var outputs: DetailViewModelOutputs { get }
+}
+
+class DetailViewModel: DetailViewModelling, DetailViewModelInputs, DetailViewModelOutputs {
     
     typealias Dependencies = HasApiClient & HasCurrencyFormatter
     
@@ -89,6 +96,10 @@ class DetailViewModel: DetailViewModelling {
             self.isLoadingTransactionDetails.value = false
         }
     }
+    
+    var inputs: DetailViewModelInputs { return self }
+    
+    var outputs: DetailViewModelOutputs { return self }
     
     // MARK: - Helpers
 

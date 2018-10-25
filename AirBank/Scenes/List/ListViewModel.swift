@@ -17,13 +17,15 @@ enum ListFilterSetting {
     case outgoingTransactions
 }
 
-protocol ListViewModelling: AnyObject {
+protocol ListViewModelInputs {
     func updateFilter(setting: ListFilterSetting)
+    func reload()
+}
+
+protocol ListViewModelOutputs {
     var filterSetting: Variable<ListFilterSetting> { get }
     var error: PublishSubject<Error> { get }
     var isLoading: Variable<Bool> { get }
-    
-    func reload()
     
     func image(for item: Transaction) -> UIImage?
     func title(for item: Transaction) -> String?
@@ -32,8 +34,13 @@ protocol ListViewModelling: AnyObject {
     var tableContents: Observable<[SectionModel<Int, Transaction>]> { get }
 }
 
-class ListViewModel: ListViewModelling {
+protocol ListViewModelling {
+    var inputs: ListViewModelInputs { get }
+    var outputs: ListViewModelOutputs { get }
+}
 
+class ListViewModel: ListViewModelling, ListViewModelInputs, ListViewModelOutputs {
+    
     typealias Dependencies = HasApiClient & HasCurrencyFormatter
     
     let apiClient: ApiClient
@@ -97,6 +104,10 @@ class ListViewModel: ListViewModelling {
             [SectionModel(model: 0, items: $0)]
         }
     }
+    
+    var inputs: ListViewModelInputs { return self }
+    
+    var outputs: ListViewModelOutputs { return self }
     
     // MARK: - Privates
     

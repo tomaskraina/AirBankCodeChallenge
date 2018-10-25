@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
     var viewModel: DetailViewModelling? {
         didSet {
             setupBinding()
-            viewModel?.reloadTransactionDetails()
+            viewModel?.inputs.reloadTransactionDetails()
         }
     }
     
@@ -53,46 +53,46 @@ class DetailViewController: UIViewController {
     private func setupBinding() {
         guard isViewLoaded else { return }
         
-        viewModel?.directionString.asObservable()
+        viewModel?.outputs.directionString.asObservable()
             .bind(to: directionLabel.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel?.directionImage.asObservable()
+        viewModel?.outputs.directionImage.asObservable()
             .bind(to: directionImageView.rx.image)
             .disposed(by: disposeBag)
         
-        viewModel?.amountFormatted.asObservable()
+        viewModel?.outputs.amountFormatted.asObservable()
             .bind(to: amountLabel.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel?.contraAccountName.asObservable()
+        viewModel?.outputs.contraAccountName.asObservable()
             .bind(to: contraAccountView.accountNameView.valueLabel.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel?.contraAccountNumber.asObservable()
+        viewModel?.outputs.contraAccountNumber.asObservable()
             .bind(to: contraAccountView.accountNumberView.valueLabel.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel?.contraBankCode.asObservable()
+        viewModel?.outputs.contraBankCode.asObservable()
             .bind(to: contraAccountView.bankCodeView.valueLabel.rx.text)
             .disposed(by: disposeBag)
         
-        viewModel?.isLoadingTransactionDetails.asObservable()
+        viewModel?.outputs.isLoadingTransactionDetails.asObservable()
             .map{ !$0 }
             .bind(to: loadingView.rx.isHidden)
             .disposed(by: disposeBag)
         
-        viewModel?.isContraAccountShown.asObservable()
+        viewModel?.outputs.isContraAccountShown.asObservable()
             .map{ !$0 }
             .bind(to: contraAccountView.rx.isHidden)
             .disposed(by: disposeBag)
         
 
-        viewModel?.error.asObservable().subscribe(onNext: { [weak self] error in
+        viewModel?.outputs.error.asObservable().subscribe(onNext: { [weak self] error in
             guard self?.view.window != nil else { return }
             
             let alert = UIAlertController.makeAlert(error: error, retryHandler: {
-                self?.viewModel?.reloadTransactionDetails()
+                self?.viewModel?.inputs.reloadTransactionDetails()
             })
             self?.present(alert, animated: true)
         }).disposed(by: disposeBag)
