@@ -80,18 +80,16 @@ class ListViewModel: ListViewModelling, ListViewModelInputs, ListViewModelOutput
         guard isLoading.value == false else { return }
         
         isLoading.value = true
-        apiClient.requestTransactionList { [weak self] (result) in
-            guard let self = self else { return }
-            self.isLoading.value = false
-            
-            switch result {
-            case .success(let value):
-                self.unfilteredItems.value = value.items
-                
-            case .failure(let error):
-                self.error.onNext(error)
-            }
-        }
+        apiClient.requestTransactionList()
+            .debug("list")
+            .do(onError: { [weak self] (error) in
+                self?.error.onNext(error)
+                }, onDispose: { [weak self] in
+                    self?.isLoading.value = false
+                })
+            .map({ $0.items })
+            .bind(to: unfilteredItems)
+            .disposed(by: disposeBag)
     }
     
     func image(for item: Transaction) -> UIImage? {

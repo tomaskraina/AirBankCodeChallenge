@@ -8,12 +8,13 @@
 
 import Alamofire
 import CodableAlamofire
+import RxSwift
 
 // MARK: - Protocols
 
 protocol NetworkingProvider {
     @discardableResult
-    func request<T: Codable>(endpoint: Endpoint, completion: @escaping (Result<T>) -> Void) -> DataRequest
+    func request<T: Codable>(endpoint: Endpoint) -> Observable<T>
 }
 
 // MARK: - Networking
@@ -29,22 +30,29 @@ class Networking: NetworkingProvider {
     let manager: SessionManager
     
     @discardableResult
-    func request<T: Codable>(endpoint: Endpoint, completion: @escaping (Result<T>) -> Void) -> DataRequest {
+    func request<T: Codable>(endpoint: Endpoint) -> Observable<T> {
         
-        let dataRequest = manager.request(endpoint, method: endpoint.method, parameters: endpoint.parameters)
-        dataRequest.responseDecodableObject { (dataResponse: DataResponse<T>) in
-            
-            switch dataResponse.result {
-            case .success(let value):
-                completion(.success(value))
+        return Observable<T>.create { [manager] observer in
+            let dataRequest = manager.request(endpoint, method: endpoint.method, parameters: endpoint.parameters)
+            dataRequest.responseDecodableObject { (dataResponse: DataResponse<T>) in
                 
-            case .failure(let error):
-                let networkingError = NetworkingError.init(error: error, httpUrlResponse: dataResponse.response)
-                completion(.failure(networkingError))
+                switch dataResponse.result {
+                case .success(let value):
+                    observer.onNext(value)
+                    
+                case .failure(let error):
+                    let networkingError = NetworkingError.init(error: error, httpUrlResponse: dataResponse.response)
+                    observer.onError(networkingError)
+                }
+                
+                observer.onCompleted()
+            }
+            
+            dataRequest.resume()
+            
+            return Disposables.create {
+                dataRequest.cancel()
             }
         }
-    
-        dataRequest.resume()
-        return dataRequest
     }
 }

@@ -22,10 +22,10 @@ protocol DetailViewModelOutputs {
     
     var error: PublishSubject<Error> { get }
     
-    var isContraAccountShown: Variable<Bool> { get }
-    var contraAccountNumber: Variable<String> { get }
-    var contraAccountName: Variable<String> { get }
-    var contraBankCode: Variable<String> { get }
+    var isContraAccountShown: Observable<Bool> { get }
+    var contraAccountNumber: Observable<String> { get }
+    var contraAccountName: Observable<String> { get }
+    var contraBankCode: Observable<String> { get }
 }
 
 protocol DetailViewModelling {
@@ -68,13 +68,21 @@ class DetailViewModel: DetailViewModelling, DetailViewModelInputs, DetailViewMod
     
     let directionImage: Variable<UIImage>
     
-    let isContraAccountShown = Variable<Bool>(false)
+    var isContraAccountShown: Observable<Bool> {
+        return contraAccountInfo.asObservable().map{ $0 != nil }
+    }
     
-    let contraAccountNumber = Variable<String>("")
+    var contraAccountNumber: Observable<String> {
+        return contraAccountInfo.asObservable().map{ $0?.accountNumber ?? "" }
+    }
     
-    let contraAccountName = Variable<String>("")
+    var contraAccountName: Observable<String> {
+        return contraAccountInfo.asObservable().map{ $0?.accountName ?? "" }
+    }
     
-    let contraBankCode = Variable<String>("")
+    var contraBankCode: Observable<String> {
+        return contraAccountInfo.asObservable().map{ $0?.bankCode ?? "" }
+    }
     
     let error = PublishSubject<Error>()
     
@@ -83,18 +91,17 @@ class DetailViewModel: DetailViewModelling, DetailViewModelInputs, DetailViewMod
         guard isLoadingTransactionDetails.value == false else { return }
         
         isLoadingTransactionDetails.value = true
-        apiClient.requestTransactionDetails(id: transaction.id) { [weak self] (result) in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let value):
-                self.contraAccountInfo = value.contraAccount
-            case .failure(let error):
-                self.error.onNext(error)
-            }
-            
-            self.isLoadingTransactionDetails.value = false
-        }
+        apiClient.requestTransactionDetails(id: transaction.id)
+            .debug("detail")
+            .observeOn(MainScheduler())
+            .do(onError: { [weak self] (error) in
+                self?.error.onNext(error)
+                }, onDispose: { [weak self] in
+                    self?.isLoadingTransactionDetails.value = false
+            })
+            .map({ $0.contraAccount })
+            .bind(to: contraAccountInfo)
+            .disposed(by: disposeBag)
     }
     
     var inputs: DetailViewModelInputs { return self }
@@ -103,12 +110,7 @@ class DetailViewModel: DetailViewModelling, DetailViewModelInputs, DetailViewMod
     
     // MARK: - Helpers
 
-    private var contraAccountInfo: ContraAccount? {
-        didSet {
-            contraAccountName.value = contraAccountInfo?.accountName ?? ""
-            contraAccountNumber.value = contraAccountInfo?.accountNumber ?? ""
-            contraBankCode.value = contraAccountInfo?.bankCode ?? ""
-            isContraAccountShown.value = contraAccountInfo != nil
-        }
-    }
+    private let disposeBag = DisposeBag()
+    
+    private let contraAccountInfo: Variable<ContraAccount?> = .init(nil)
 }

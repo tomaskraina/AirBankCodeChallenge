@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 class ApiClient {
     
@@ -17,14 +18,14 @@ class ApiClient {
     let networking: NetworkingProvider
     
     @discardableResult
-    func requestTransactionList(completion: @escaping (Result<TransactionListResponse>) -> Void) -> DataRequest {
+    func requestTransactionList() -> Observable<TransactionListResponse> {
         let endpoint = AirBankEndpoint.transactionList
-        return networking.request(endpoint: endpoint, completion: completion)
+        return networking.request(endpoint: endpoint)
     }
     
     @discardableResult
-    func requestTransactionDetails(id: Identifier<Transaction>, completion: @escaping (Result<TransactionDetailsResponse>) -> Void) -> DataRequest {
+    func requestTransactionDetails(id: Identifier<Transaction>) -> Observable<TransactionDetailsResponse> {
         let endpoint = AirBankEndpoint.transactionDetails(id: id)
-        return networking.request(endpoint: endpoint, completion: completion)
+        return networking.request(endpoint: endpoint)
     }
 }
