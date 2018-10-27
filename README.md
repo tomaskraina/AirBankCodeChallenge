@@ -19,20 +19,20 @@ carthage bootstrap --platform ios
 
 ## Architecture
 
-When possible (and suitable), this app follows MVVM architecture.
+When possible, AirBank follows MVVM-C architecture. [RxSwift](https://github.com/ReactiveX/RxSwift), a popular reactive-programing framwork is used for binding views with view models. View controllers send events to the coordinator by using the delegate pattern.
 
 ## Project structure
 
-The whole project is structured in scenes where each scene represents one screen in the app. Each scene consits of at least one `*ViewController` and `*ViewModel`.
+The whole project is structured in scenes where each scene represents one screen in the app. Each scene consits of one `*ViewController`, `*ViewModel`, and a `*.storyboard` file.
 
 All the other files are structured in their particular category, e.g. `Model`, `Networking`, `Extensions`, etc.
 
 ## Testing
 
-The project has only unit test implemented. The tests are written using the standart `XCTest` framework and are mainly focused on JSON parsing. You can run the tests by simply pressing `CMD+U` in Xcode.
+The project has a few unit and integration tests implemented. The tests are written using the standart `XCTest` framework and are mainly focused on JSON parsing. You can run the tests by simply pressing `CMD+U` in Xcode.
 
 # Contact
 
-Tom Kraina
-me@tomkraina.com
-tomkraina.com
+- Tom Kraina
+- me@tomkraina.com
+- tomkraina.com
