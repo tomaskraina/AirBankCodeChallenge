@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C4A26362189ACAD009316C1 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9A3503217E534F006D887C /* RxSwift.framework */; };
+		9C4A26382189ACC6009316C1 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4A26372189ACC6009316C1 /* RxBlocking.framework */; };
 		9C4B0DB42179E54F00A93DEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DB32179E54F00A93DEE /* AppDelegate.swift */; };
 		9C4B0DB62179E54F00A93DEE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4B0DB52179E54F00A93DEE /* DetailViewController.swift */; };
 		9C4B0DBB2179E55000A93DEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C4B0DBA2179E55000A93DEE /* Assets.xcassets */; };
@@ -76,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C4A26372189ACC6009316C1 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
 		9C4B0DB02179E54F00A93DEE /* AirBank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirBank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C4B0DB32179E54F00A93DEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C4B0DB52179E54F00A93DEE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C4A26382189ACC6009316C1 /* RxBlocking.framework in Frameworks */,
+				9C4A26362189ACAD009316C1 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +239,7 @@
 		9C4B0DDE217B7A4C00A93DEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C4A26372189ACC6009316C1 /* RxBlocking.framework */,
 				9C9A3508217F1C18006D887C /* Differentiator.framework */,
 				9C9A3507217F1C18006D887C /* RxDataSources.framework */,
 				9C9A3504217E534F006D887C /* RxCocoa.framework */,
@@ -402,6 +408,7 @@
 				9C4B0DC02179E55000A93DEE /* Sources */,
 				9C4B0DC12179E55000A93DEE /* Frameworks */,
 				9C4B0DC22179E55000A93DEE /* Resources */,
+				9C4A26392189ADF2009316C1 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -481,6 +488,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		9C4A26392189ADF2009316C1 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
+			);
+			name = Carthage;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxBlocking.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		9C4B0DDF217B7AA700A93DEE /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -765,7 +794,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AirBankTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -774,6 +808,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomkraina.AirBankTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirBank.app/AirBank";
@@ -785,7 +820,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = AirBankTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -794,6 +834,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tomkraina.AirBankTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirBank.app/AirBank";
